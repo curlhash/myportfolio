@@ -6,7 +6,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/dist/');
+    res.sendFile(__dirname + '/dist/index.html');
+});
+app.get('/surprise-me', function (req, res) {
+	res.sendFile(__dirname + '/dist/experiment.html');
 });
 
 app.listen(80, function () {

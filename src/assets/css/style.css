@@ -1,0 +1,66 @@
+@keyframes blink {
+    70%{
+        position: relative;
+        top: -163px;
+        left: 40px;
+        width: 219px;
+        height: 128px;
+    }
+    85%{
+        left: 40px;
+        width: 219px;
+        height: 70px;
+        position: relative;
+        top: -130px;
+    }
+
+}
+
+.heading-text {
+    text-align: center;
+    font-size: 3em;
+    padding: 0;
+    margin: -25px 0px;
+    color: rgba(2, 2, 47, 0.7);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    word-spacing: 5px;
+}
+#wrapper {
+    display: table;
+    margin: 4em auto;
+}
+.box {
+    background-color: rgb(3, 3, 47);;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%/50%;
+}
+
+.header {
+    height: 110px;
+    background: rgb(157, 157, 216);
+    border-bottom: 15px solid rgba(3, 3, 47, 0.67);
+    position: relative;
+    padding: 30px 0px 0px 0px;
+}
+.blink{
+    width: 219px;
+    height: 128px;
+    position: relative;
+    top: -163px;
+    transition: 1.2s linear;
+    -webkit-transition: 1.2s linear;
+    animation: blink 2.5s infinite;
+}
+
+img{
+    position: relative;
+    top: 5px;
+    left: 40px;
+    height: 165px;
+    width: 219px;
+
+}
