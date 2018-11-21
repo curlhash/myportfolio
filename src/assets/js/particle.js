@@ -52,19 +52,24 @@
 		// update
 		for(var i = 0; i < arr.length; i++) {
 			var time = ((new Date()).getTime() - startTime) / 2;
-			var angularVelocity = 0.009 - (i * 0.001);
-			var circleRadius = canvas.width/2 - (i * 20);
+			var angularVelocity;
+			if (settings.spiral[settingIndex].isOmegaResRandom) {
+				angularVelocity = settings.spiral[settingIndex].omega - (i * Math.random() * settings.spiral[settingIndex].omegaResistance);
+			} else {
+				angularVelocity = settings.spiral[settingIndex].omega - (i * settings.spiral[settingIndex].omegaResistance);
+			}
+			var circleRadius = canvas.width/2 - (i * settings.spiral[settingIndex].radiusResistance);
 			var centerX = canvas.width / 2;
 			var centerY = canvas.height / 2;
 			var theta = time * angularVelocity;
-			var nextX = circleRadius * Math.cos(theta - (i * 0.02)) + centerX;
-			var nextY = circleRadius * Math.sin(theta - (i * 0.02)) + centerY;
+			var nextX = circleRadius * Math.cos(theta - (i * settings.spiral[settingIndex].thetaResistanceX)) + centerX;
+			var nextY = circleRadius * Math.sin(theta - (i * settings.spiral[settingIndex].thetaResistanceY)) + centerY;
 			arr[i].x = nextX;
 			arr[i].y = nextY;
 			//arr[i].radius = Math.floor(Math.random() * 10) + 3;
 		}
 
-		context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+		context.fillStyle = 'rgba(0, 0, 0, ' + settings.spiral[settingIndex].fillStyleOp + ')';
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
 		// draw
@@ -138,6 +143,95 @@
 	};
 	var DECIDING_ARR = ['SPIRAL', 'EXPLOSION'];
 	var EXPERIMENT_COUNT = 2;
+	var settings = {
+		spiral: [
+			{
+				omega: 0.09,
+				isOmegaResRandom: true,
+				omegaResistance: 0.00001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 0.00001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.009,
+				isOmegaResRandom: false,
+				omegaResistance: 0.001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.009,
+				isOmegaResRandom: false,
+				omegaResistance: 0.001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.05,
+				thetaResistanceY: 0.01,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.05,
+				isOmegaResRandom: false,
+				omegaResistance: 0.00009,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 0.001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 0.005,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			}
+		]
+	};
+	var settingIndex;
 
 	var colorPallete = generateColorPallete(['c96332', 'ec9e14', 'f1e4da', '00a2e4']);
 	var canvas = document.getElementById('myCanvas');
@@ -145,8 +239,9 @@
 	var chance = DECIDING_ARR[Math.floor(Math.random() * EXPERIMENT_COUNT)];
 	var particleCount, particlesArr;
 	if (chance === EXPERIMENTS.spiral) {
-		particleCount = 50;
-		particlesArr = initParticles(particleCount, 3, 1, false);
+		settingIndex = Math.floor(Math.random() * settings.spiral.length);
+		particleCount = settings.spiral[settingIndex].particleCount;
+		particlesArr = initParticles(particleCount, settings.spiral[settingIndex].particleRad, settings.spiral[settingIndex].particleOp, false);
 		drawParticle(particlesArr, context);
 		setAnimation(animate, particlesArr, canvas, context);
 	} else if (chance === EXPERIMENTS.explosion) {
@@ -154,11 +249,6 @@
 		particlesArr = initExplosionParticles(particleCount, 10, 1, false);
 		drawParticle(particlesArr, context);
 		setAnimation(explosionAnimate, particlesArr, canvas, context);
-	} else {
-		particleCount = 50;
-		particlesArr = initParticles(particleCount);
-		drawParticle(particlesArr, context);
-		setAnimation(animate, particlesArr, canvas, context);
 	}
 	context.fillStyle = 'rgba(0, 0, 0, 0.07)';
 	context.fillRect(0, 0, canvas.width, canvas.height);
