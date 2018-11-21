@@ -2,13 +2,13 @@
     70%{
         position: relative;
         top: -163px;
-        left: 40px;
-        width: 219px;
+        left: 41px;
+        width: 217px;
         height: 128px;
     }
     85%{
-        left: 40px;
-        width: 219px;
+        left: 41px;
+        width: 217px;
         height: 70px;
         position: relative;
         top: -130px;
@@ -47,10 +47,11 @@
     padding: 30px 0px 0px 0px;
 }
 .blink{
-    width: 219px;
+    width: 217px;
     height: 128px;
     position: relative;
     top: -163px;
+    left: 41px;
     transition: 1.2s linear;
     -webkit-transition: 1.2s linear;
     animation: blink 2.5s infinite;
@@ -64,3 +65,24 @@ img{
     width: 219px;
 
 }
+
+a.button1{
+    display: block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #313131;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;;
+    font-weight: 300;
+    color: #313131;
+    text-align: center;
+    transition: all 0.2s;
+    width: 150px;
+    margin: 2.5em auto;
+}
+a.button1:hover{
+    color:#FFFFFF;
+    background-color: #313131;
+}
+

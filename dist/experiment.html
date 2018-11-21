@@ -16,10 +16,34 @@
             position: relative;
             left: 25%;
         }
+        a.button1{
+            display: inline-block;
+            padding: 0.35em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 0.2s;
+            width: 150px;
+            margin: 0 auto;
+            position: relative;
+        }
+        a.button1:hover{
+            color:#313131;
+            background-color: #FFFFFF;
+        }
     </style>
 </head>
 <body>
     <canvas id="myCanvas" width="1200" height="1200"></canvas>
+    <div style="display: block; width: 304px; margin: 0 auto;">
+        <a href="/surprise-me" class="button1">Surprise Me</a>
+        <a href="/" class="button1">Home</a>
+    </div>
     <script type="text/javascript" src="assets/js/particle.js"></script>
 </body>
 </html>

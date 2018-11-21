@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "gulp build-site && node server.js",
+    "start": "gulp dev && node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -16,6 +16,8 @@
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-filter": "^5.1.0",
+    "gulp-uglify": "^3.0.1",
     "run-sequence": "^2.2.1"
   }
 }
