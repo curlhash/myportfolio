@@ -35,7 +35,7 @@
 	function initParticles(num, radius, opacity, isRandom) {
 		var returnArr = [];
 		var particleObj = {};
-		radius = isRandom ? Math.floor(Math.random() * radius) + 1 : radius;
+		radius = isRandom ? Math.floor(Math.random() * radius) + 4 : radius;
 		opacity = isRandom ? Math.floor(Math.random() * opacity) : opacity;
 		for (var i = 0; i < num; i++) {
 			particleObj = {
@@ -52,7 +52,7 @@
 		// update
 		for(var i = 0; i < arr.length; i++) {
 			var time = ((new Date()).getTime() - startTime) / 2;
-			var angularVelocity = 0.01 - (i * 0.0005);
+			var angularVelocity = 0.009 - (i * 0.001);
 			var circleRadius = canvas.width/2 - (i * 20);
 			var centerX = canvas.width / 2;
 			var centerY = canvas.height / 2;
@@ -111,8 +111,8 @@
 			arr[i].radius -= 0.12;
 		}
 
-		context.fillStyle = 'rgba(0, 0, 0, 0.01)';
-		context.fillRect(0, 0, canvas.width, canvas.height);
+		context.fillStyle = 'rgba(0, 0, 0, 0.5)';
+		//context.fillRect(0, 0, canvas.width, canvas.height);
 
 		// draw
 		drawParticle(arr, context);
@@ -139,18 +139,18 @@
 	var DECIDING_ARR = ['SPIRAL', 'EXPLOSION'];
 	var EXPERIMENT_COUNT = 2;
 
-	var colorPallete = generateColorPallete(['009ab0', '82efee', 'cfbca6', '128a08']);
+	var colorPallete = generateColorPallete(['c96332', 'ec9e14', 'f1e4da', '00a2e4']);
 	var canvas = document.getElementById('myCanvas');
 	var context = canvas.getContext('2d');
 	var chance = DECIDING_ARR[Math.floor(Math.random() * EXPERIMENT_COUNT)];
 	var particleCount, particlesArr;
 	if (chance === EXPERIMENTS.spiral) {
 		particleCount = 50;
-		particlesArr = initParticles(particleCount, 5, 1, false);
+		particlesArr = initParticles(particleCount, 3, 1, false);
 		drawParticle(particlesArr, context);
 		setAnimation(animate, particlesArr, canvas, context);
 	} else if (chance === EXPERIMENTS.explosion) {
-		particleCount = 50;
+		particleCount = 100;
 		particlesArr = initExplosionParticles(particleCount, 10, 1, false);
 		drawParticle(particlesArr, context);
 		setAnimation(explosionAnimate, particlesArr, canvas, context);
