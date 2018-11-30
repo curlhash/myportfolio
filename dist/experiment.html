@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         body {
-            margin: 100;
+            margin: 30px;
             background-color: black;
         }
         canvas {
@@ -15,6 +15,18 @@
             width: 50%;
             position: relative;
             left: 25%;
+        }
+        .floating-controls {
+            background: black;
+            padding: 5px;
+            width: 155px;
+            z-index: 100;
+            position: absolute;
+            top: 0px;
+            float: right;
+            right: 0px;
+            margin: 5px;
+            color: #676073;
         }
         a.button1{
             display: inline-block;
@@ -36,13 +48,76 @@
             color:#313131;
             background-color: #FFFFFF;
         }
+        .form-group {
+            margin: 5px;
+        }
+        input {
+            width: 100px;
+            background-color: #676073;
+            border: 0;
+            margin: 5px 0;
+        }
+        label {
+            margin: 0 5px;
+        }
+        .btn-setting-save {
+            width: 102px;
+            margin: 0 5px;
+            padding: 5px;
+            color: #676073;
+            background-color: black;
+            border: 1px solid #676073;
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
     <canvas id="myCanvas" width="1200" height="1200"></canvas>
-    <div style="display: block; width: 304px; margin: 2em auto;">
-        <a href="/surprise-me" class="button1">Surprise Me</a>
-        <a href="/" class="button1">Home</a>
+    <div class="floating-controls">
+        <div class="form-group">
+            <label for="omega">Omega</label>
+            <input id="omega" type="number" name="omega" min="0" max="10">
+        </div>
+        <div class="form-group">
+            <label for="isOmegaResRandom">isOmegaResRandom</label>
+            <input id="isOmegaResRandom" type="number" name="omega" min="0" max="1">
+        </div>
+        <div class="form-group">
+            <label for="omegaResistance">omegaResistance</label>
+            <input id="omegaResistance" type="number" name="omegaResistance" min="0" max="10">
+        </div>
+        <div class="form-group">
+            <label for="radiusResistance">radiusResistance</label>
+            <input id="radiusResistance" type="number" name="radiusResistance" min="0" max="100">
+        </div>
+        <div class="form-group">
+            <label for="thetaResistanceX">thetaResistanceX</label>
+            <input id="thetaResistanceX" type="number" name="thetaResistanceX" min="0" max="10">
+        </div>
+        <div class="form-group">
+            <label for="thetaResistanceY">thetaResistanceY</label>
+            <input id="thetaResistanceY" type="number" name="thetaResistanceY" min="0" max="10">
+        </div>
+        <div class="form-group">
+            <label for="particleRad">particleRad</label>
+            <input id="particleRad" type="number" name="particleRad" min="0" max="10">
+        </div>
+        <div class="form-group">
+            <label for="particleOp">particleOp</label>
+            <input id="particleOp" type="number" name="particleOp" min="0" max="10">
+        </div>
+        <div class="form-group">
+            <label for="fillStyleOp">fillStyleOp</label>
+            <input id="fillStyleOp" type="number" name="fillStyleOp" min="0" max="10">
+        </div>
+        <div class="form-group">
+            <label for="particleCount">particleRad</label>
+            <input id="particleCount" type="number" name="particleCount" min="0" max="1000">
+        </div>
+        <button class="btn-setting-save" onclick="changeSetting()">Change Setting</button>
+        <a href="/surprise-me"><button class="btn-setting-save">Surprise Me</button></a>
+        <a href="/"><button class="btn-setting-save">Home</button></a>
+        <p>Note: Clicking on 'Surprise Me' will reset your customisation</p>
     </div>
     <script type="text/javascript" src="assets/js/particle.js"></script>
 </body>

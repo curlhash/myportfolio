@@ -1,10 +1,124 @@
 (function () {
+	var prom1,prom2;
 	window.requestAnimFrame = (function(callback) {
 		return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
 			function(callback) {
-				window.setTimeout(callback, 1000 / 60);
+				prom1 = setTimeout(callback, 1000 / 60);
 			};
 	})();
+
+	// random selection of the experiment
+	var EXPERIMENTS = {
+		spiral: 'SPIRAL',
+		explosion: 'EXPLOSION'
+	};
+	var arbitor = false;
+	var DECIDING_ARR = ['SPIRAL', 'EXPLOSION'];
+	var EXPERIMENT_COUNT = 2;
+	var settings = {
+		spiral: [
+			{
+				omega: 0.09,
+				isOmegaResRandom: true,
+				omegaResistance: 0.00001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 0.00001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 5,
+				radiusResistance: 10,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 60
+			},
+			{
+				omega: 0.009,
+				isOmegaResRandom: false,
+				omegaResistance: 0.001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.009,
+				isOmegaResRandom: false,
+				omegaResistance: 0.001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.05,
+				thetaResistanceY: 0.01,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.05,
+				isOmegaResRandom: false,
+				omegaResistance: 0.00009,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 0.001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 0.005,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			}
+		]
+	};
+	var colorPallete, chance = DECIDING_ARR[Math.floor(Math.random() * EXPERIMENT_COUNT)];
+	var settingIndex = Math.floor(Math.random() * settings.spiral.length);
+	var canvas = document.getElementById('myCanvas');
+	var context = canvas.getContext('2d');
 
 	function drawParticle(arr, context) {
 		var colorRGB;
@@ -49,6 +163,9 @@
 		return returnArr;
 	}
 	function animate(arr, canvas, context, startTime) {
+		if (!arbitor) {
+			return;
+		}
 		// update
 		for(var i = 0; i < arr.length; i++) {
 			var time = ((new Date()).getTime() - startTime) / 2;
@@ -130,126 +247,72 @@
 
 	function setAnimation (callback, particlesArr, canvas, context) {
 		// wait one second before starting animation
-		setTimeout(function() {
+		prom2 = setTimeout(function() {
+			arbitor = true;
 			var startTime = (new Date()).getTime();
 			callback(particlesArr, canvas, context, startTime);
 		}, 1000);
 	}
 
-	// random selection of the experiment
-	var EXPERIMENTS = {
-		spiral: 'SPIRAL',
-		explosion: 'EXPLOSION'
-	};
-	var DECIDING_ARR = ['SPIRAL', 'EXPLOSION'];
-	var EXPERIMENT_COUNT = 2;
-	var settings = {
-		spiral: [
-			{
-				omega: 0.09,
-				isOmegaResRandom: true,
-				omegaResistance: 0.00001,
-				radiusResistance: 20,
-				thetaResistanceX: 0.02,
-				thetaResistanceY: 0.02,
-				particleRad: 3,
-				particleOp: 1,
-				fillStyleOp: 0.07,
-				particleCount: 100
-			},
-			{
-				omega: 0.09,
-				isOmegaResRandom: false,
-				omegaResistance: 0.00001,
-				radiusResistance: 20,
-				thetaResistanceX: 0.02,
-				thetaResistanceY: 0.02,
-				particleRad: 3,
-				particleOp: 1,
-				fillStyleOp: 0.07,
-				particleCount: 100
-			},
-			{
-				omega: 0.009,
-				isOmegaResRandom: false,
-				omegaResistance: 0.001,
-				radiusResistance: 20,
-				thetaResistanceX: 0.02,
-				thetaResistanceY: 0.02,
-				particleRad: 3,
-				particleOp: 1,
-				fillStyleOp: 0.07,
-				particleCount: 100
-			},
-			{
-				omega: 0.009,
-				isOmegaResRandom: false,
-				omegaResistance: 0.001,
-				radiusResistance: 20,
-				thetaResistanceX: 0.05,
-				thetaResistanceY: 0.01,
-				particleRad: 3,
-				particleOp: 1,
-				fillStyleOp: 0.07,
-				particleCount: 100
-			},
-			{
-				omega: 0.05,
-				isOmegaResRandom: false,
-				omegaResistance: 0.00009,
-				radiusResistance: 20,
-				thetaResistanceX: 0.02,
-				thetaResistanceY: 0.02,
-				particleRad: 3,
-				particleOp: 1,
-				fillStyleOp: 0.07,
-				particleCount: 100
-			},
-			{
-				omega: 0.09,
-				isOmegaResRandom: false,
-				omegaResistance: 0.001,
-				radiusResistance: 20,
-				thetaResistanceX: 0.02,
-				thetaResistanceY: 0.02,
-				particleRad: 3,
-				particleOp: 1,
-				fillStyleOp: 0.07,
-				particleCount: 100
-			},
-			{
-				omega: 0.09,
-				isOmegaResRandom: false,
-				omegaResistance: 0.005,
-				radiusResistance: 20,
-				thetaResistanceX: 0.02,
-				thetaResistanceY: 0.02,
-				particleRad: 3,
-				particleOp: 1,
-				fillStyleOp: 0.07,
-				particleCount: 100
-			}
-		]
-	};
-	var settingIndex;
-
-	var colorPallete = generateColorPallete(['c96332', 'ec9e14', 'f1e4da', '00a2e4']);
-	var canvas = document.getElementById('myCanvas');
-	var context = canvas.getContext('2d');
-	var chance = DECIDING_ARR[Math.floor(Math.random() * EXPERIMENT_COUNT)];
-	var particleCount, particlesArr;
-	if (chance === EXPERIMENTS.spiral) {
-		settingIndex = Math.floor(Math.random() * settings.spiral.length);
-		particleCount = settings.spiral[settingIndex].particleCount;
-		particlesArr = initParticles(particleCount, settings.spiral[settingIndex].particleRad, settings.spiral[settingIndex].particleOp, false);
-		drawParticle(particlesArr, context);
-		setAnimation(animate, particlesArr, canvas, context);
-	} else if (chance === EXPERIMENTS.explosion) {
-		particleCount = 100;
-		particlesArr = initExplosionParticles(particleCount, 10, 1, false);
-		drawParticle(particlesArr, context);
-		setAnimation(explosionAnimate, particlesArr, canvas, context);
+	function updateSettingForm (obj) {
+		document.getElementById('omega').value = obj.omega;
+		document.getElementById('isOmegaResRandom').value = obj.isOmegaResRandom;
+		document.getElementById('omegaResistance').value = obj.omegaResistance;
+		document.getElementById('radiusResistance').value = obj.radiusResistance;
+		document.getElementById('thetaResistanceX').value = obj.thetaResistanceX;
+		document.getElementById('thetaResistanceY').value = obj.thetaResistanceY;
+		document.getElementById('particleRad').value = obj.particleRad;
+		document.getElementById('particleOp').value = obj.particleOp;
+		document.getElementById('fillStyleOp').value = obj.fillStyleOp;
+		document.getElementById('particleCount').value = obj.particleCount;
 	}
-	context.fillStyle = 'rgba(0, 0, 0, 0.07)';
-	context.fillRect(0, 0, canvas.width, canvas.height);
+
+	function killPromises () {
+		clearTimeout(prom1);
+		clearTimeout(prom2);
+	}
+
+	function initExperiment () {
+		context.fillStyle = 'rgba(0, 0, 0)';
+		context.fillRect(0, 0, canvas.width, canvas.height);
+		colorPallete = generateColorPallete(['c96332', 'ec9e14', 'f1e4da', '00a2e4']);
+		var particleCount, particlesArr;
+		if (chance === EXPERIMENTS.spiral) {
+			updateSettingForm(settings.spiral[settingIndex]);
+			particleCount = settings.spiral[settingIndex].particleCount;
+			particlesArr = initParticles(particleCount, settings.spiral[settingIndex].particleRad, settings.spiral[settingIndex].particleOp, false);
+			drawParticle(particlesArr, context);
+			setAnimation(animate, particlesArr, canvas, context);
+		} else if (chance === EXPERIMENTS.explosion) {
+			particleCount = 100;
+			particlesArr = initExplosionParticles(particleCount, 10, 1, false);
+			drawParticle(particlesArr, context);
+			setAnimation(explosionAnimate, particlesArr, canvas, context);
+		}
+	}
+
+	window.changeSetting = function () {
+		var returnObj = {
+			omega: Number(document.getElementById('omega').value) || 0,
+			isOmegaResRandom: Number(document.getElementById('isOmegaResRandom').value) || 0,
+			omegaResistance: Number(document.getElementById('omegaResistance').value) || 0,
+			radiusResistance: Number(document.getElementById('radiusResistance').value) || 0,
+			thetaResistanceX: Number(document.getElementById('thetaResistanceX').value) || 0,
+			thetaResistanceY: Number(document.getElementById('thetaResistanceY').value) || 0,
+			particleRad: Number(document.getElementById('particleRad').value) || 0,
+			particleOp: Number(document.getElementById('particleOp').value) || 0,
+			fillStyleOp: Number(document.getElementById('fillStyleOp').value) || 0,
+			particleCount: Number(document.getElementById('particleCount').value) || 0
+		};
+		settings = {
+			spiral: [returnObj]
+		};
+		settingIndex = 0;
+		killPromises();
+		arbitor = false;
+		setTimeout(function () {
+			initExperiment();
+		}, 1000);
+	};
+	initExperiment();
 })();
