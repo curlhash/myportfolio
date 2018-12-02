@@ -69,11 +69,47 @@
             border: 1px solid #676073;
             margin: 5px;
         }
+        @media screen and (max-width: 480px) {
+            .floating-controls {
+                background: black;
+                padding: 5px;
+                width: 100%;
+                z-index: 100;
+                position: relative;
+                top: 0px;
+                right: 0px;
+                margin: 5px;
+                color: #676073;
+                text-align: center;
+            }
+            canvas {
+                margin: 0 auto;
+                width: 100%;
+                position: relative;
+                left: 0px;
+            }
+            body {
+                margin: 5px;
+                background-color: black;
+            }
+        }
     </style>
 </head>
 <body>
     <canvas id="myCanvas" width="1200" height="1200"></canvas>
     <div class="floating-controls">
+        <button class="btn-setting-save" onclick="downloadImg()">Download Pattern</button>
+        <div class="form-group">
+            <label for="omega">Choose Color Palette</label>
+            <input type="color" id="favcolor" name="favcolor" value="">
+            <div style="overflow: scroll;">
+                <p style="color: #676174; font-size: 12px;" id="fcolor"></p>
+            </div>
+            <div>
+                <button class="btn-setting-save" onclick="addColor()">Add</button>
+                <button class="btn-setting-save" onclick="clearColor()">Clear</button>
+            </div>
+        </div>
         <div class="form-group">
             <label for="omega">Omega</label>
             <input id="omega" type="number" name="omega" min="0" max="10">

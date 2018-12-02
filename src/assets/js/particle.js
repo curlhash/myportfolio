@@ -115,7 +115,8 @@
 			}
 		]
 	};
-	var colorPallete, chance = DECIDING_ARR[Math.floor(Math.random() * EXPERIMENT_COUNT)];
+	var colorPallete = generateColorPallete(['c96332', 'ec9e14', 'f1e4da', '00a2e4']);
+	var chance = DECIDING_ARR[Math.floor(Math.random() * EXPERIMENT_COUNT)];
 	var settingIndex = Math.floor(Math.random() * settings.spiral.length);
 	var canvas = document.getElementById('myCanvas');
 	var context = canvas.getContext('2d');
@@ -275,7 +276,6 @@
 	function initExperiment () {
 		context.fillStyle = 'rgba(0, 0, 0)';
 		context.fillRect(0, 0, canvas.width, canvas.height);
-		colorPallete = generateColorPallete(['c96332', 'ec9e14', 'f1e4da', '00a2e4']);
 		var particleCount, particlesArr;
 		if (chance === EXPERIMENTS.spiral) {
 			updateSettingForm(settings.spiral[settingIndex]);
@@ -304,6 +304,7 @@
 			fillStyleOp: Number(document.getElementById('fillStyleOp').value) || 0,
 			particleCount: Number(document.getElementById('particleCount').value) || 0
 		};
+		colorPallete = generateColorPallete(colorPaletteArr);
 		settings = {
 			spiral: [returnObj]
 		};
@@ -313,6 +314,23 @@
 		setTimeout(function () {
 			initExperiment();
 		}, 1000);
+	};
+	var colorPaletteArr = [];
+	window.addColor = function () {
+		colorPaletteArr.push(document.getElementById('favcolor') && document.getElementById('favcolor').value || '#ffffff');
+		document.getElementById('fcolor').innerHTML += ',' + colorPaletteArr[colorPaletteArr.length - 1];
+	};
+	window.clearColor = function () {
+		colorPaletteArr = [];
+		document.getElementById('fcolor').innerHTML = '';
+		document.getElementById('favcolor').valueOf = '';
+	};
+	function debugBase64(base64URL){
+		var win = window.open();
+		win.document.write('<img src="' + base64URL  + '">');
+	}
+	window.downloadImg = function () {
+		debugBase64(canvas.toDataURL('image/png', 1.0));
 	};
 	initExperiment();
 })();
