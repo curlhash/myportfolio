@@ -115,7 +115,8 @@
 			}
 		]
 	};
-	var colorPallete = generateColorPallete(['c96332', 'ec9e14', 'f1e4da', '00a2e4']);
+	var colorPaletteArr = ['c96332', 'ec9e14', 'f1e4da', '00a2e4'];
+	var colorPallete = generateColorPallete(colorPaletteArr);
 	var chance = DECIDING_ARR[Math.floor(Math.random() * EXPERIMENT_COUNT)];
 	var settingIndex = Math.floor(Math.random() * settings.spiral.length);
 	var canvas = document.getElementById('myCanvas');
@@ -315,7 +316,6 @@
 			initExperiment();
 		}, 1000);
 	};
-	var colorPaletteArr = [];
 	window.addColor = function () {
 		colorPaletteArr.push(document.getElementById('favcolor') && document.getElementById('favcolor').value || '#ffffff');
 		document.getElementById('fcolor').innerHTML += ',' + colorPaletteArr[colorPaletteArr.length - 1];
