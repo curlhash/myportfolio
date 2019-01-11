@@ -16,13 +16,16 @@
 
 }
 
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .heading-text {
     text-align: center;
     font-size: 3em;
     padding: 0;
     margin: -25px 0px;
     color: rgba(2, 2, 47, 0.7);
-    font-family: 'Montserrat', sans-serif;
     font-weight: 100;
     word-spacing: 5px;
 }
@@ -84,5 +87,42 @@ a.button1{
 a.button1:hover{
     color:#FFFFFF;
     background-color: #313131;
+}
+
+body {
+    margin: 0;
+    background-color: white;
+}
+canvas {
+    position: relative;
+}
+.project {
+    position: absolute;
+    background: white;
+    z-index: 1000;
+    visibility: visible;
+    border-radius: 50%;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    width: 296px;
+    height: 296px;
+    top: 202px;
+    left: 202px;
+}
+.project div {
+    display: none;
+}
+.resume > .d-resume {
+    display: block!important;
+    position: relative;
+    top: 51px;
+    width: 246px;
+    padding: 25px;
+    text-align: center;
+}
+.main-block {
+    position: relative;
+    margin: 0 auto;
+    width: 700px;
 }
 

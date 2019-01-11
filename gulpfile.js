@@ -17,7 +17,7 @@ gulp.task('build', function(){
 	var JS_FILTER = filter(srcAllJsFiles, {restore: true});
 	return gulp.src(srcAllFiles)
 		.pipe(JS_FILTER)
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(JS_FILTER.restore)
 		.pipe(gulp.dest(dist));
 });

@@ -1,1 +1,336 @@
-!function(){var t,s;window.requestAnimFrame=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(e){t=setTimeout(e,1e3/60)};var a="SPIRAL",i="EXPLOSION",R=!1,g={spiral:[{omega:.09,isOmegaResRandom:!0,omegaResistance:1e-5,radiusResistance:20,thetaResistanceX:.02,thetaResistanceY:.02,particleRad:3,particleOp:1,fillStyleOp:.07,particleCount:100},{omega:.09,isOmegaResRandom:!1,omegaResistance:1e-5,radiusResistance:20,thetaResistanceX:.02,thetaResistanceY:.02,particleRad:3,particleOp:1,fillStyleOp:.07,particleCount:100},{omega:.09,isOmegaResRandom:!1,omegaResistance:5,radiusResistance:10,thetaResistanceX:.02,thetaResistanceY:.02,particleRad:3,particleOp:1,fillStyleOp:.07,particleCount:60},{omega:.009,isOmegaResRandom:!1,omegaResistance:.001,radiusResistance:20,thetaResistanceX:.02,thetaResistanceY:.02,particleRad:3,particleOp:1,fillStyleOp:.07,particleCount:100},{omega:.009,isOmegaResRandom:!1,omegaResistance:.001,radiusResistance:20,thetaResistanceX:.05,thetaResistanceY:.01,particleRad:3,particleOp:1,fillStyleOp:.07,particleCount:100},{omega:.05,isOmegaResRandom:!1,omegaResistance:9e-5,radiusResistance:20,thetaResistanceX:.02,thetaResistanceY:.02,particleRad:3,particleOp:1,fillStyleOp:.07,particleCount:100},{omega:.09,isOmegaResRandom:!1,omegaResistance:.001,radiusResistance:20,thetaResistanceX:.02,thetaResistanceY:.02,particleRad:3,particleOp:1,fillStyleOp:.07,particleCount:100},{omega:.09,isOmegaResRandom:!1,omegaResistance:.005,radiusResistance:20,thetaResistanceX:.02,thetaResistanceY:.02,particleRad:3,particleOp:1,fillStyleOp:.07,particleCount:100}]},n=c(["c96332","ec9e14","f1e4da","00a2e4"]),l=["SPIRAL","EXPLOSION"][Math.floor(2*Math.random())],p=Math.floor(Math.random()*g.spiral.length),u=document.getElementById("myCanvas"),o=u.getContext("2d");function h(e,t){var a;a=n[Math.floor(Math.random()*n.length)]||"0,255,56";for(var i=0;i<e.length;i++)t.beginPath(),t.arc(e[i].x,e[i].y,e[i].radius,0,2*Math.PI),t.fillStyle="rgba("+a+", "+e[i].opacity+")",t.fill(),t.closePath()}function r(e){e=e.replace("#","");return parseInt(e.substring(0,2),16)+", "+parseInt(e.substring(2,4),16)+", "+parseInt(e.substring(4,6),16)}function c(e){for(var t=[],a=0;a<e.length;a++)t.push(r(e[a]));return t}function f(e,t,a,i){if(R){for(var n=0;n<e.length;n++){var s,l=((new Date).getTime()-i)/2;s=g.spiral[p].isOmegaResRandom?g.spiral[p].omega-n*Math.random()*g.spiral[p].omegaResistance:g.spiral[p].omega-n*g.spiral[p].omegaResistance;var o=t.width/2-n*g.spiral[p].radiusResistance,r=t.width/2,c=t.height/2,m=l*s,u=o*Math.cos(m-n*g.spiral[p].thetaResistanceX)+r,d=o*Math.sin(m-n*g.spiral[p].thetaResistanceY)+c;e[n].x=u,e[n].y=d}a.fillStyle="rgba(0, 0, 0, "+g.spiral[p].fillStyleOp+")",a.fillRect(0,0,t.width,t.height),h(e,a),requestAnimFrame(function(){f(e,t,a,i)})}}function m(e,t,a,i){for(var n=0;n<e.length;n++){var s=.01*((new Date).getTime()-i+1),l=s*Math.cos(e[n].theta)+e[n].x,o=s*Math.sin(e[n].theta)+e[n].y;e[n].x=l,e[n].y=o,e[n].radius-=.12}a.fillStyle="rgba(0, 0, 0, 0.5)",h(e,a),requestAnimFrame(function(){m(e,t,a,i)})}function d(t,a,i,n){s=setTimeout(function(){R=!0;var e=(new Date).getTime();t(a,i,n,e)},1e3)}function y(){var e,t;o.fillStyle="rgba(0, 0, 0)",o.fillRect(0,0,u.width,u.height),l===a?(t=g.spiral[p],document.getElementById("omega").value=t.omega,document.getElementById("isOmegaResRandom").value=t.isOmegaResRandom,document.getElementById("omegaResistance").value=t.omegaResistance,document.getElementById("radiusResistance").value=t.radiusResistance,document.getElementById("thetaResistanceX").value=t.thetaResistanceX,document.getElementById("thetaResistanceY").value=t.thetaResistanceY,document.getElementById("particleRad").value=t.particleRad,document.getElementById("particleOp").value=t.particleOp,document.getElementById("fillStyleOp").value=t.fillStyleOp,document.getElementById("particleCount").value=t.particleCount,h(e=function(e,t,a,i){var n=[],s={};t=i?Math.floor(Math.random()*t)+4:t,a=i?Math.floor(Math.random()*a):a;for(var l=0;l<e;l++)s={x:u.width/2,y:u.height/2,radius:t||10,opacity:a||1},n.push(s);return n}(g.spiral[p].particleCount,g.spiral[p].particleRad,g.spiral[p].particleOp,!1),o),d(f,e,u,o)):l===i&&(h(e=function(e,t,a,i){var n=0,s=[],l={},o=u.width/50,r=u.width/2,c=u.height/2;t=i?Math.floor(Math.random()*t)+1:t,a=i?Math.floor(Math.random()*a):a;for(var m=0;m<e;m++)l={x:o*Math.cos(n)+r,y:o*Math.sin(n)+c,radius:t||10,opacity:a||1,theta:n},s.push(l),n+=2*Math.PI/e;return s}(100,10,1,!1),o),d(m,e,u,o))}window.changeSetting=function(){var e={omega:Number(document.getElementById("omega").value)||0,isOmegaResRandom:Number(document.getElementById("isOmegaResRandom").value)||0,omegaResistance:Number(document.getElementById("omegaResistance").value)||0,radiusResistance:Number(document.getElementById("radiusResistance").value)||0,thetaResistanceX:Number(document.getElementById("thetaResistanceX").value)||0,thetaResistanceY:Number(document.getElementById("thetaResistanceY").value)||0,particleRad:Number(document.getElementById("particleRad").value)||0,particleOp:Number(document.getElementById("particleOp").value)||0,fillStyleOp:Number(document.getElementById("fillStyleOp").value)||0,particleCount:Number(document.getElementById("particleCount").value)||0};n=c(v),g={spiral:[e]},p=0,clearTimeout(t),clearTimeout(s),R=!1,setTimeout(function(){y()},1e3)};var v=[];window.addColor=function(){v.push(document.getElementById("favcolor")&&document.getElementById("favcolor").value||"#ffffff"),document.getElementById("fcolor").innerHTML+=","+v[v.length-1]},window.clearColor=function(){v=[],document.getElementById("fcolor").innerHTML="",document.getElementById("favcolor").valueOf=""},window.downloadImg=function(){var e;e=u.toDataURL("image/png",1),window.open().document.write('<img src="'+e+'">')},y()}();
+(function () {
+	var prom1,prom2;
+	window.requestAnimFrame = (function(callback) {
+		return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+			function(callback) {
+				prom1 = setTimeout(callback, 1000 / 60);
+			};
+	})();
+
+	// random selection of the experiment
+	var EXPERIMENTS = {
+		spiral: 'SPIRAL',
+		explosion: 'EXPLOSION'
+	};
+	var arbitor = false;
+	var DECIDING_ARR = ['SPIRAL', 'EXPLOSION'];
+	var EXPERIMENT_COUNT = 2;
+	var settings = {
+		spiral: [
+			{
+				omega: 0.09,
+				isOmegaResRandom: true,
+				omegaResistance: 0.00001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 0.00001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 5,
+				radiusResistance: 10,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 60
+			},
+			{
+				omega: 0.009,
+				isOmegaResRandom: false,
+				omegaResistance: 0.001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.009,
+				isOmegaResRandom: false,
+				omegaResistance: 0.001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.05,
+				thetaResistanceY: 0.01,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.05,
+				isOmegaResRandom: false,
+				omegaResistance: 0.00009,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 0.001,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			},
+			{
+				omega: 0.09,
+				isOmegaResRandom: false,
+				omegaResistance: 0.005,
+				radiusResistance: 20,
+				thetaResistanceX: 0.02,
+				thetaResistanceY: 0.02,
+				particleRad: 3,
+				particleOp: 1,
+				fillStyleOp: 0.07,
+				particleCount: 100
+			}
+		]
+	};
+	var colorPaletteArr = ['c96332', 'ec9e14', 'f1e4da', '00a2e4'];
+	var colorPallete = generateColorPallete(colorPaletteArr);
+	var chance = DECIDING_ARR[Math.floor(Math.random() * EXPERIMENT_COUNT)];
+	var settingIndex = Math.floor(Math.random() * settings.spiral.length);
+	var canvas = document.getElementById('myCanvas');
+	var context = canvas.getContext('2d');
+
+	function drawParticle(arr, context) {
+		var colorRGB;
+		colorRGB = colorPallete[Math.floor(Math.random() * colorPallete.length)] || '0,255,56';
+		for (var i = 0; i < arr.length; i++) {
+			context.beginPath();
+			context.arc(arr[i].x, arr[i].y, arr[i].radius, 0, 2 * Math.PI);
+			context.fillStyle = 'rgba(' + colorRGB + ', ' + arr[i].opacity + ')';
+			context.fill();
+			context.closePath();
+		}
+	}
+	function convertHexColor (hex) {
+		var hex = hex.replace('#', '');
+		var r = parseInt(hex.substring(0, 2), 16);
+		var g = parseInt(hex.substring(2, 4), 16);
+		var b = parseInt(hex.substring(4, 6), 16);
+		return r + ', ' + g + ', ' + b;
+	}
+	function generateColorPallete (hexArr) {
+		var returnArr = [];
+		for (var i = 0; i < hexArr.length; i++) {
+			returnArr.push(convertHexColor(hexArr[i]));
+		}
+		return returnArr;
+	}
+
+	function initParticles(num, radius, opacity, isRandom) {
+		var returnArr = [];
+		var particleObj = {};
+		radius = isRandom ? Math.floor(Math.random() * radius) + 4 : radius;
+		opacity = isRandom ? Math.floor(Math.random() * opacity) : opacity;
+		for (var i = 0; i < num; i++) {
+			particleObj = {
+				x: canvas.width/2,
+				y: canvas.height/2,
+				radius: radius || 10,
+				opacity: opacity || 1
+			};
+			returnArr.push(particleObj)
+		}
+		return returnArr;
+	}
+	function animate(arr, canvas, context, startTime) {
+		if (!arbitor) {
+			return;
+		}
+		// update
+		for(var i = 0; i < arr.length; i++) {
+			var time = ((new Date()).getTime() - startTime) / 2;
+			var angularVelocity;
+			if (settings.spiral[settingIndex].isOmegaResRandom) {
+				angularVelocity = settings.spiral[settingIndex].omega - (i * Math.random() * settings.spiral[settingIndex].omegaResistance);
+			} else {
+				angularVelocity = settings.spiral[settingIndex].omega - (i * settings.spiral[settingIndex].omegaResistance);
+			}
+			var circleRadius = canvas.width/2 - (i * settings.spiral[settingIndex].radiusResistance);
+			var centerX = canvas.width / 2;
+			var centerY = canvas.height / 2;
+			var theta = time * angularVelocity;
+			var nextX = circleRadius * Math.cos(theta - (i * settings.spiral[settingIndex].thetaResistanceX)) + centerX;
+			var nextY = circleRadius * Math.sin(theta - (i * settings.spiral[settingIndex].thetaResistanceY)) + centerY;
+			arr[i].x = nextX;
+			arr[i].y = nextY;
+			//arr[i].radius = Math.floor(Math.random() * 10) + 3;
+		}
+
+		context.fillStyle = 'rgba(0, 0, 0, ' + settings.spiral[settingIndex].fillStyleOp + ')';
+		context.fillRect(0, 0, canvas.width, canvas.height);
+
+		// draw
+		drawParticle(arr, context);
+
+		// request new frame
+		requestAnimFrame(function() {
+			animate(arr, canvas, context, startTime);
+		});
+	}
+
+	function initExplosionParticles(num, radius, opacity, isRandom) {
+		var theta = 0;
+		var returnArr = [];
+		var particleObj = {};
+		var circleRadius = canvas.width/50;
+		var centerX = canvas.width / 2;
+		var centerY = canvas.height / 2;
+		radius = isRandom ? Math.floor(Math.random() * radius) + 1 : radius;
+		opacity = isRandom ? Math.floor(Math.random() * opacity) : opacity;
+		for (var i = 0; i < num; i++) {
+			particleObj = {
+				x: circleRadius * Math.cos(theta) + centerX,
+				y: circleRadius * Math.sin(theta) + centerY,
+				radius: radius || 10,
+				opacity: opacity || 1,
+				theta: theta
+			};
+			returnArr.push(particleObj);
+			theta += 2 * Math.PI / num;
+		}
+		return returnArr;
+	}
+	function explosionAnimate(arr, canvas, context, startTime) {
+		// update
+		for(var i = 0; i < arr.length; i++) {
+			var time = (new Date()).getTime() - startTime + 1;
+			var speed = 0.01;
+			var distance = time * speed;
+			var nextX = distance * Math.cos(arr[i].theta) + arr[i].x;
+			var nextY = distance * Math.sin(arr[i].theta) + arr[i].y;
+			arr[i].x = nextX;
+			arr[i].y = nextY;
+			arr[i].radius -= 0.12;
+		}
+
+		context.fillStyle = 'rgba(0, 0, 0, 0.5)';
+		//context.fillRect(0, 0, canvas.width, canvas.height);
+
+		// draw
+		drawParticle(arr, context);
+
+		// request new frame
+		requestAnimFrame(function() {
+			explosionAnimate(arr, canvas, context, startTime);
+		});
+	}
+
+	function setAnimation (callback, particlesArr, canvas, context) {
+		// wait one second before starting animation
+		prom2 = setTimeout(function() {
+			arbitor = true;
+			var startTime = (new Date()).getTime();
+			callback(particlesArr, canvas, context, startTime);
+		}, 1000);
+	}
+
+	function updateSettingForm (obj) {
+		document.getElementById('omega').value = obj.omega;
+		document.getElementById('isOmegaResRandom').value = obj.isOmegaResRandom;
+		document.getElementById('omegaResistance').value = obj.omegaResistance;
+		document.getElementById('radiusResistance').value = obj.radiusResistance;
+		document.getElementById('thetaResistanceX').value = obj.thetaResistanceX;
+		document.getElementById('thetaResistanceY').value = obj.thetaResistanceY;
+		document.getElementById('particleRad').value = obj.particleRad;
+		document.getElementById('particleOp').value = obj.particleOp;
+		document.getElementById('fillStyleOp').value = obj.fillStyleOp;
+		document.getElementById('particleCount').value = obj.particleCount;
+	}
+
+	function killPromises () {
+		clearTimeout(prom1);
+		clearTimeout(prom2);
+	}
+
+	function initExperiment () {
+		context.fillStyle = 'rgba(0, 0, 0)';
+		context.fillRect(0, 0, canvas.width, canvas.height);
+		var particleCount, particlesArr;
+		if (chance === EXPERIMENTS.spiral) {
+			updateSettingForm(settings.spiral[settingIndex]);
+			particleCount = settings.spiral[settingIndex].particleCount;
+			particlesArr = initParticles(particleCount, settings.spiral[settingIndex].particleRad, settings.spiral[settingIndex].particleOp, false);
+			drawParticle(particlesArr, context);
+			setAnimation(animate, particlesArr, canvas, context);
+		} else if (chance === EXPERIMENTS.explosion) {
+			particleCount = 100;
+			particlesArr = initExplosionParticles(particleCount, 10, 1, false);
+			drawParticle(particlesArr, context);
+			setAnimation(explosionAnimate, particlesArr, canvas, context);
+		}
+	}
+
+	window.changeSetting = function () {
+		var returnObj = {
+			omega: Number(document.getElementById('omega').value) || 0,
+			isOmegaResRandom: Number(document.getElementById('isOmegaResRandom').value) || 0,
+			omegaResistance: Number(document.getElementById('omegaResistance').value) || 0,
+			radiusResistance: Number(document.getElementById('radiusResistance').value) || 0,
+			thetaResistanceX: Number(document.getElementById('thetaResistanceX').value) || 0,
+			thetaResistanceY: Number(document.getElementById('thetaResistanceY').value) || 0,
+			particleRad: Number(document.getElementById('particleRad').value) || 0,
+			particleOp: Number(document.getElementById('particleOp').value) || 0,
+			fillStyleOp: Number(document.getElementById('fillStyleOp').value) || 0,
+			particleCount: Number(document.getElementById('particleCount').value) || 0
+		};
+		colorPallete = generateColorPallete(colorPaletteArr);
+		settings = {
+			spiral: [returnObj]
+		};
+		settingIndex = 0;
+		killPromises();
+		arbitor = false;
+		setTimeout(function () {
+			initExperiment();
+		}, 1000);
+	};
+	window.addColor = function () {
+		colorPaletteArr.push(document.getElementById('favcolor') && document.getElementById('favcolor').value || '#ffffff');
+		document.getElementById('fcolor').innerHTML += ',' + colorPaletteArr[colorPaletteArr.length - 1];
+	};
+	window.clearColor = function () {
+		colorPaletteArr = [];
+		document.getElementById('fcolor').innerHTML = '';
+		document.getElementById('favcolor').valueOf = '';
+	};
+	function debugBase64(base64URL){
+		var win = window.open();
+		win.document.write('<img src="' + base64URL  + '">');
+	}
+	window.downloadImg = function () {
+		debugBase64(canvas.toDataURL('image/png', 1.0));
+	};
+	initExperiment();
+})();
