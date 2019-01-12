@@ -35,7 +35,6 @@ function getTheNextPointGivenD (dt, d, x, xf, y, yf) {
 }
 
 function toggleBubble (obj, target, isInFront, trackIndex) {
-	var scaleFactor = target.factor;
 	var d = distance(obj.x, target.x, obj.y, target.y);
 	var easing = d * 0.1;
 	if (isInFront) {
@@ -44,8 +43,7 @@ function toggleBubble (obj, target, isInFront, trackIndex) {
 		easing = 5; //(d > 0.5) ? 1/d : 0.1;
 	}
 	var nextCoOrd = getTheNextPointGivenD(easing, d, obj.x, target.x, obj.y, target.y);
-	var radFactor = (target.radius - obj.radius) * 0.08;
-	obj.radius += radFactor;
+	obj.radius += (target.radius - obj.radius) * 0.08;
 	if (exitIndexArr.indexOf(trackIndex) !== -1 && Math.abs(obj.radius/target.radC) >= 1) {
 		obj.radius = target.radC;
 	}
@@ -55,39 +53,23 @@ function toggleBubble (obj, target, isInFront, trackIndex) {
 	obj.opacity = target.opacity;
 	obj.x = nextCoOrd.x;
 	obj.y = nextCoOrd.y;
-	// if (obj.radius < (target.radius - 20)) {
-	// 	obj.radius += scaleFactor;
-	// } else if (obj.radius > (target.radius + 20)) {
-	// 	obj.radius -= scaleFactor;
-	// } else {
-	// 	obj.radius = target.radius;
-	// }
-	// if (exitIndexArr.indexOf(trackIndex) === -1) {
-	// 	scaleFactor = easing > 10 ? easing : 10;
-	// }
-	// if (obj.x < (target.x - 10)) {
-	// 	obj.x += scaleFactor;
-	// } else if (obj.x > (target.x + 10)) {
-	// 	obj.x -= scaleFactor;
-	// } else if (obj.x !== target.x) {
-	// 	obj.x = target.x;
-	// } else {
-	// 	if (obj.y < (target.y - 10)) {
-	// 		obj.y += scaleFactor;
-	// 	} else if (obj.y > (target.y + 10)) {
-	// 		obj.y -= scaleFactor;
-	// 	} else {
-	// 		obj.y = target.y;
-	// 	}
-	// }
 	if (isInFront && (target.radius - Math.round(obj.radius) < 10) && (target.x - Math.round(obj.x) < 10)  && (target.y - Math.round(obj.y) < 10) && !clickInit && !reachedCenter && (exitIndexArr.indexOf(trackIndex) === -1)) {
 		reachedCenter = true;
 		projEl.style.opacity = 1;
-		projEl.style.width = '296px';
-		projEl.style.height = '296px';
-		projEl.style.top = '202px';
-		projEl.style.left = '202px';
-		projEl.classList.add(obj.imgClass);
+		projEl.style.width = '290px';
+		projEl.style.height = '290px';
+		projEl.style.top = '205px';
+		projEl.style.left = '205px';
+		projEl.classList.forEach(function (t) {
+			if (t !== 'project') {
+				projEl.classList.remove(t);
+			}
+		});
+		if (obj.imgClass) {
+			projEl.classList.add(obj.imgClass);
+		} else {
+			projEl.classList.add('other');
+		}
 		cleansingExitBubbles();
 	}
 	return obj;
@@ -273,13 +255,14 @@ function initParticles(num) {
 	var centerY = canvas.height / 2;
 	var bigCircleCount = 0;
 	var imgEl;
+	var pickFirst = -1;
 	for (var i = 0; i < num; i++) {
 		theta = (Math.random() + 0.5) * (2 * Math.PI);
 		circleRadius = canvas.width/3 + (80 - Math.random() * 160);
 		particleObj = {
 			x: circleRadius * Math.cos(theta) + centerX,
 			y: circleRadius * Math.sin(theta) + centerY,
-			radius: Math.random() * (bigCircleCount < 10 ? 80 : 15) + 1,
+			radius: Math.random() * (bigCircleCount < 15 ? 80 : 15) + 1,
 			opacity: 0.1,
 			theta: theta,
 			colorRGB: colorPallete[Math.floor(Math.random() * colorPallete.length)] || '0,255,56',
@@ -296,17 +279,21 @@ function initParticles(num) {
 		particleObj.radC = particleObj.radius;
 		particleObj.xC = particleObj.x;
 		particleObj.yC = particleObj.y;
-		if (particleObj.radius > 15) {
+		if (particleObj.radius > 20) {
 			bigCircleCount += 1;
 			if (eyesElArr.length) {
 				imgEl = eyesElArr.pop();
 				particleObj.img = imgEl.el;
 				particleObj.imgClass = imgEl.class;
+				if (pickFirst === -1 && imgEl.class === 'me') {
+					pickFirst = returnArr.length;
+				}
 			}
 		}
 		returnArr.push(particleObj);
 		theta += 2 * Math.PI / particleCount;
 	}
+	returnArr.push(returnArr.splice(pickFirst, 1)[0]);
 	return returnArr;
 }
 function animate(arr, canvas, context, startTime) {
@@ -425,9 +412,9 @@ canvas.addEventListener('click', function(e) {
 	clickInit = true;
 	reachedCenter = false;
 	projEl.style.opacity = 0;
-	projEl.style.width = '0px';
-	projEl.style.height = '0px';
-	projEl.style.top = '0px';
-	projEl.style.left = '0px';
+	projEl.style.width = '0px!important';
+	projEl.style.height = '0px!important';
+	projEl.style.top = '0px!important';
+	projEl.style.left = '0px!important';
 
 }, false);

@@ -2,12 +2,10 @@
     70%{
         position: relative;
         top: -163px;
-        left: 41px;
         width: 217px;
         height: 128px;
     }
     85%{
-        left: 41px;
         width: 217px;
         height: 70px;
         position: relative;
@@ -34,9 +32,9 @@ body {
     margin: 4em auto;
 }
 .box {
-    background-color: rgb(3, 3, 47);;
-    width: 300px;
-    height: 300px;
+    background-color: rgb(3, 3, 47);
+    width: 290px;
+    height: 290px;
     overflow: hidden;
     position: relative;
     border-radius: 50%/50%;
@@ -54,7 +52,6 @@ body {
     height: 128px;
     position: relative;
     top: -163px;
-    left: 41px;
     transition: 1.2s linear;
     -webkit-transition: 1.2s linear;
     animation: blink 2.5s infinite;
@@ -63,10 +60,44 @@ body {
 img{
     position: relative;
     top: 5px;
-    left: 40px;
     height: 165px;
     width: 219px;
+}
 
+p.project-text {
+    text-align: center;
+    font-size: 1em;
+    padding: 0;
+    margin: -25px 0px;
+    color: rgba(2, 2, 47, 0.7);
+    font-weight: 100;
+    word-spacing: 5px;
+}
+
+.footer-text {
+    text-align: center;
+    font-size: 0.8em;
+    color: rgba(2, 2, 47, 0.7);
+    font-weight: 100;
+    word-spacing: 5px;
+}
+
+a.project-btn {
+    display: block;
+    padding: 0.35em 1.2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: #313131;
+    text-align: center;
+    width: 150px;
+    margin: 2.5em auto;
+    transition: all 0.2s;
+    opacity: 0.8;
+    font-weight: bold;
+}
+a.project-btn:hover {
+    opacity: 1;
 }
 
 a.button1{
@@ -102,27 +133,102 @@ canvas {
     z-index: 1000;
     visibility: visible;
     border-radius: 50%;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.1s ease;
     opacity: 0;
     width: 296px;
     height: 296px;
     top: 202px;
     left: 202px;
 }
-.project div {
+.project > .d-resume {
+    display: none;
+}
+.project > .d-me {
+    display: none;
+}
+.project > .d-angelco {
+    display: none;
+}
+.project > .d-insta {
+    display: none;
+}
+.project > .d-linkedin {
+    display: none;
+}
+.project > .d-github {
+     display: none;
+}
+.project > .d-surprise {
+    display: none;
+}
+.project > .d-other {
     display: none;
 }
 .resume > .d-resume {
     display: block!important;
     position: relative;
-    top: 51px;
+    top: 40%;
     width: 246px;
-    padding: 25px;
+    padding: 20px;
+    text-align: center;
+}
+.me > .d-me {
+    display: block!important;
+    top: 40%;
+    width: 246px;
+    text-align: center;
+}
+.insta > .d-insta {
+    display: block!important;
+    position: relative;
+    top: 38%;
+    width: 246px;
+    padding: 20px;
+    text-align: center;
+}
+.linkedin > .d-linkedin {
+    display: block!important;
+    position: relative;
+    top: 36%;
+    width: 246px;
+    padding: 20px;
+    text-align: center;
+}
+.github > .d-github {
+    display: block!important;
+    position: relative;
+    top: 37%;
+    width: 246px;
+    padding: 20px;
+    text-align: center;
+}
+.surprise > .d-surprise {
+    display: block!important;
+    position: relative;
+    top: 38%;
+    width: 246px;
+    padding: 20px;
+    text-align: center;
+}
+.angel > .d-angelco {
+    display: block!important;
+    position: relative;
+    top: 38%;
+    width: 246px;
+    padding: 20px;
+    text-align: center;
+}
+.other > .d-other {
+    display: block!important;
+    position: relative;
+    top: 40%;
+    width: 246px;
+    padding: 20px;
     text-align: center;
 }
 .main-block {
-    position: relative;
     margin: 0 auto;
+    position: relative;
     width: 700px;
 }
 
