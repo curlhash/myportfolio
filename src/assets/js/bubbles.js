@@ -117,6 +117,7 @@ function drawWithoutImage (arr, context, i) {
 }
 function drawParticle(arr, context) {
 	var hack = false;
+	var clickedIndex = -1;
 	hoveringIndices = [];
 	for (var i = 0; i < arr.length; i++) {
 		// checking hover
@@ -125,10 +126,8 @@ function drawParticle(arr, context) {
 				if (distance(mouse.x - canvasX, arr[i].x/2, mouse.y - canvasY, arr[i].y/2) < arr[i].radius) {
 					hoveringIndices.push(i);
 					if (clickInit) {
-						arr.push(arr.splice(i, 1)[0]);
-						projectBubbleArr.push(arr.length - 1);
+						clickedIndex = i;
 						hack = true;
-						break;
 					}
 					arr[i].opacity = 0.3;
 					if (arr[i].radius < arr[i].maxR) {
@@ -190,6 +189,8 @@ function drawParticle(arr, context) {
 	if(hack) {
 		hack = false;
 		clickInit = false;
+		arr.push(arr.splice(clickedIndex, 1)[0]);
+		projectBubbleArr.push(arr.length - 1);
 		drawParticle(arr, context);
 	}
 }
