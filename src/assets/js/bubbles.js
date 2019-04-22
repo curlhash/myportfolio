@@ -405,8 +405,8 @@ setTimeout(function() {
 }, 100);
 
 document.addEventListener("mousemove", function(e) {
-	mouse.x = e.x;
-	mouse.y = e.y;
+	mouse.x = e.x + window.pageXOffset;
+	mouse.y = e.y + window.pageYOffset;
 }, false);
 
 canvas.addEventListener('click', function(e) {
