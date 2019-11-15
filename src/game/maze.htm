@@ -1,0 +1,1867 @@
+<html> 
+<head> 
+<title>Fountain of youth</title>
+<link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+<body>
+	
+	<div id="header">
+	<p id="message"> Good luck for your journey!</p>
+	<p id="score">Your Score: 0</p> <!-- This line will tell the total score of player -->
+	<p id="life">Number of lives: 4 </p>
+</div>
+
+	<audio id="point" src="point.mp3" preload="auto"></audio> <!-- audio which refers to the points -->
+	<audio id="jump" src="jump.wav" preload="auto"></audio>
+	<audio id="broken" src="broken.mp3" preload="auto"></audio>
+	<audio id="track" src="track1.mp3" preload="auto"></audio>
+	<audio id="mission1" src="mission1.mp3" preload="auto"></audio>
+	<audio id="mission2" src="mission2.mp3" preload="auto"></audio>
+	<audio id="maze" src="maze.mp3" preload="auto"></audio>
+
+	
+	<div id = "maze_intro" class="msg1"><button id="start" onclick = "maze()"> Play! </button>
+	<ul id = "text">
+	<li>So you are set to find the Fountain of youth!</li>
+	<li>Let me remind you its not an easy task.</li> 
+	<li>Enter the maze and lookout for checkpoints. And face the challenges to move ahead.</li>
+	<li>Watchout for the secret pathways. They can let you pass through the walls and at times they can even throw you out of the maze if you try to make unnecessary collisions with wall.</li></ul>
+	<img src="bandi.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	<div id = "mission1_intro" class="msg11"><button id="start" onclick = "mission1()"> Play! </button>
+	<ul id = "text">
+	<li>Get ready to face the challenge!</li>
+	<li>You will have to pass through rings that come your way.</li> 
+	<li>35 rings will come your way, you'll have to pass through as many of them as possible and gain maximum energy points.</li>
+	<li>Colliding with a ring will not cause you any physical harm. But you must pass through at least 20 rings to move ahead. Use arrow keys to navigate.</li></ul>
+	<img src="bandi.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	
+	<div id = "mission1_end" class="msg13"><button id="start" onclick = "maze()"> Proceed! </button>
+	<ul id = "text">Congratulations! You've successfully finished the first task! Keep up the good work!</ul>
+	<img src="bandi.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	<div id = "mission1_msg" class="msg12"><button id="start" onclick = "remove1()"> Proceed! </button>
+		<ul id = "text">Congratulations! You've reached first checkpoint and now you are ready to perform the task. Click to proceed.</ul>
+		<img src="bandi.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	<div id = "mission2_msg" class="msg22"><button id="start" onclick = "remove3()"> Proceed! </button>
+		<ul id = "text">Congratulations! You've reached second checkpoint and now you are ready to perform the task. Click to proceed.</ul>
+		<img src="guy.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	<div id = "mission2_end" class="msg23"><button id="start" onclick = "maze()"> Proceed! </button>
+		<ul id = "text">Bravo! You've successfully finished the second task! You are stronger than you look!</ul>
+		<img src="guy.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	<div id = "mission2_intro" class="msg21"><button id="start" onclick = "mission2()"> Proceed! </button>
+		<ul id = "text">
+			<li>Let's see how well can you handle the fire!</li>
+			<li>You've some experience of passing through rings, don't you?</li>
+			<li>Here also you've do the same thing. but be careful! Colliding with a ring has become dangerous now!</li>
+			<li>Initially you'll have 4 lives and you'll lose one with each collision.</li>
+		<li>50 rings will be coming your way, and you must pass through at least 25 rings of them to move ahead, more the rings you pass through, more will be your score.</li> 
+			<li>Use arrow keys to navigate.</li></ul>
+			<img src="guy.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	<div id = "mission3_msg" class="msg32"><button id="start" onclick = "remove5()"> Proceed! </button>
+		<ul id = "text">Congratulations! You've reached third checkpoint and now you are ready to perform the task. Click to proceed.</ul>
+		<img src="bandi.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	<div id = "mission3_end" class="msg33"><button id="start" onclick = "maze()"> Proceed! </button>
+		<ul id = "text">Bingo! You've successfully finished the third task as well! Now go find the fountain of youth. Good Luck!</ul>
+		<img src="bandi.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	<div id = "mission3_intro" class="msg31"><button id="start" onclick = "mission3()"> Proceed! </button>
+		<ul id = "text">
+			<li>So you can handle fire quite well! Now let's check your agility.</li>
+		<li>Jump over the obstacles that come your way to reach the spaceship.</li>
+		<li>Colliding with an obstacle is indeed dangerous; it will cost you a life.</li>
+		<li>Your task is to save as many lives (out of 4) as possible before you reach the spaceship.</li>
+		<li>All the best! You are so close to the Fountain of Youth, don't ruin all your hard work now! </li>
+		<li>	Use arrow keys to navigate.</li></ul>
+		<img src="bandi.png" style="width: 200px;
+height: 280px;
+float: right;
+position: relative;
+top: -35px;">
+	</div>
+	<div id = "final_msg" class="msg4">
+		<ul id = "text">Finally you have reached your dream destination. You have proved yourself throughout the journey and you are really worthy of the Fountain of youth!</ul>
+	</div>
+	<!--<button id="start" onclick = "mission1()"> Play2 </button>-->
+	<script src="RequestAnimationFrame.js"></script>
+	<script src="Stats.js"></script>
+	<script src="Three.js"></script>
+	<script>
+	var is_mission1 = false;
+	var is_mission2 = false;
+	var is_mission3 = false;
+ 
+
+
+function maze(){
+	document.getElementById( "maze_intro" ).style.display = "none";
+	var play_track_maze = document.getElementById("maze");
+	play_track_maze.play();
+	var add_intro1 = document.getElementById("mission1_end");
+	add_intro1.style.display = "none";
+	var add_intro2 = document.getElementById("mission2_end");
+	add_intro2.style.display = "none";
+	var add_intro3 = document.getElementById("mission3_end");
+	add_intro3.style.display = "none";
+	var scene = new THREE.Scene();
+	var t =0;
+	var factor = 1; //Decides the speed of camera and cube.
+	var light;
+	var obstacle;
+    var right = false;
+    var left = false;
+    var up = false;
+    var down = false;
+    var keycode;
+	var test = 0; //used to check whether the ring has passed or not.
+	var xSpeed = 0; //x co-ordinate of cube.
+	var ySpeed = 0; //y co-ordinate of cube.
+	var zSpeed = 400; //z co-ordinate of cube.
+	var cameraZ = 400; //z co-ordinate of camera.
+	
+	var zCam = 380;
+	var xPos = 0;
+    var xObj = 0;
+    var yObj = 0;
+    var zObj = 200;
+	if(is_mission1 == true){
+		xObj = -50;
+		zObj = 50;
+	}
+	if (is_mission2 == true) {
+		xObj = -20;
+		zObj = -110;
+	}
+	if (is_mission3 == true) {
+		xObj = 132;
+		zObj = -48;
+	}
+	
+	var camera; //used to create WebGL camera
+	var renderer; //used to create WebGL renderer
+	var geometry; //used to define object's geometry
+	var material; //used to define object's material
+	var Rmaterial; //used to define ring's material
+	var cube; // stores the mesh(as of now the geometry is cube)
+
+	
+        
+     
+	
+	initialiseScene(); //calling a function which initialises the scene
+	animateScene(); //calling a function which will enables the animation
+
+
+
+
+
+					function initialiseScene(){
+
+
+						camera = new THREE.PerspectiveCamera(10, window.innerWidth/window.innerHeight, 1, 10000); 
+						renderer = new THREE.WebGLRenderer(); 
+						renderer.setSize(window.innerWidth, window.innerHeight); 
+						document.body.appendChild(renderer.domElement); 
+						
+						sun = new THREE.DirectionalLight( 0xffffff );
+						sun.position.set( 10, 10, 10 );
+						scene.add( sun );
+                                                var geom = new THREE.CubeGeometry(8,8,8);
+                                                var skin = new THREE.MeshPhongMaterial({color: 0x0000ff});
+                                                var cube1 = new THREE.Mesh(geom, skin);
+                                                var cube2 = new THREE.Mesh(geom, skin);
+                                                var cube3 = new THREE.Mesh(geom, skin);
+                                                var fountain = new THREE.Mesh(new THREE.CubeGeometry(20,20,20),skin);
+                                                                                               
+                                                cube1.position.set(-50,0,50);
+                                                cube2.position.set(-20,0,-110);
+                                                cube3.position.set(132,0,-48);
+                                                fountain.position.set(0,0,0);
+                                                scene.add(cube1);
+                                                scene.add(cube2);
+                                                scene.add(cube3);
+                                                scene.add(fountain);
+						//document.getElementById('track').play();
+						
+      var head = new THREE.SphereGeometry(10/4, 50, 50),
+		        body = new THREE.SphereGeometry(16/4,50,50),
+            hand = new THREE.SphereGeometry(4/4, 50, 50),
+            foot = new THREE.SphereGeometry(8/4, 50, 50, 0, 3.14 * 2, 0, 3.14 / 2),
+            nose = new THREE.SphereGeometry(2/4, 50, 50),
+            // Set the material, the "skin"
+            material = new THREE.MeshNormalMaterial();
+        // Set the character modelisation object
+        mesh = new THREE.Object3D();
+        mesh.position.y = 0;
+        mesh.position.z = 0;
+        mesh.position.x = 0;
+        // Set and add its head
+        head = new THREE.Mesh(head, material);
+        head.position.y = 25/4;
+        mesh.add(head);
+        // Set and add its body
+        body = new THREE.Mesh(body, material);
+        body.position.y = 0;
+        mesh.add(body);
+        // Set and add its hands
+        hands = {
+            left: new THREE.Mesh(hand, material),
+            right: new THREE.Mesh(hand, material)
+        };
+        hands.left.position.x = -20/4;
+        hands.left.position.y = -4/4;
+        hands.right.position.x = 20/4;
+        hands.right.position.y = -4/4;
+        mesh.add(hands.left);
+        mesh.add(hands.right);
+        // Set and add its feet
+        feet = {
+            left: new THREE.Mesh(foot, material),
+            right: new THREE.Mesh(foot, material)
+        };
+        feet.left.position.x = -10/4;
+        feet.left.position.y = -24/4;
+        feet.left.rotation.y = Math.PI / 4;
+        feet.right.position.x = 10/4;
+        feet.right.position.y = -24/4;
+        feet.right.rotation.y = Math.PI / 4;
+        mesh.add(feet.left);
+        mesh.add(feet.right);
+        // Set and add its nose
+        nose = new THREE.Mesh(nose, material);
+        nose.position.y = 25/4;
+        nose.position.z = -10/4;
+        mesh.add(nose);
+scene.add(mesh);  
+						var room = new THREE.CubeGeometry(410,1,230);
+						var floorMat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('floor.jpg')});
+						var floor = new THREE.Mesh(room,floorMat);
+                                                floor.position.set(0,-5,0);
+                        var wall = new THREE.CubeGeometry(10,50,230);
+                        var wall_b = new THREE.CubeGeometry(410,50,10);
+                        var wall_mat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall.jpg')});
+                       
+                        var wall_left = new THREE.Mesh(wall,wall_mat);
+                        wall_left.position.set(-200,20,0);
+                        var wall_right = new THREE.Mesh(wall,wall_mat);
+                        wall_right.position.set(200,20,0);
+                        var wall_back = new THREE.Mesh(wall_b,wall_mat);
+                        wall_back.position.set(0,20,-120);
+                        var wall_f = new THREE.CubeGeometry(190,50,10);
+                        var wall_front_1 = new THREE.Mesh(wall_f,wall_mat);
+                        var wall_front_2 = new THREE.Mesh(wall_f,wall_mat);
+                        wall_front_1.position.set(-107.5,20,110); 
+                        scene.add(wall_front_1);
+                        wall_front_2.position.set(107.5,20,110); 
+                        scene.add(wall_front_2); 
+						var wall_1 = new THREE.CubeGeometry(70,50,10);			//horizontal block 7 units long
+						var wall_1a = new THREE.Mesh(wall_1,wall_mat);
+						wall_1a.position.set(-150,20,-100);
+						scene.add(wall_1a);
+						var wall_1b = new THREE.Mesh(wall_1,wall_mat);
+						wall_1b.position.set(150,20,-100);
+						scene.add(wall_1b);
+						var wall_1c = new THREE.Mesh(wall_1,wall_mat);
+						wall_1c.position.set(-50,20,-100);
+						scene.add(wall_1c);
+						var wall_1d = new THREE.Mesh(wall_1,wall_mat);
+						wall_1d.position.set(40,20,-100);
+						scene.add(wall_1d);
+						var wall_1e = new THREE.Mesh(wall_1,wall_mat);
+						wall_1e.position.set(-130,20,-80);
+						scene.add(wall_1e);
+						var wall_1f = new THREE.Mesh(wall_1,wall_mat);
+						wall_1f.position.set(130,20,-80);
+						scene.add(wall_1f);
+						var wall_1g = new THREE.Mesh(wall_1,wall_mat);
+						wall_1g.position.set(40,20,-60);
+						scene.add(wall_1g);
+						var wall_1h = new THREE.Mesh(wall_1,wall_mat);
+						wall_1h.position.set(-50,20,20);
+						scene.add(wall_1h);
+						var wall_1i = new THREE.Mesh(wall_1,wall_mat);
+						wall_1i.position.set(30,20,20);
+						scene.add(wall_1i);
+						var wall_1j = new THREE.Mesh(wall_1,wall_mat);
+						wall_1j.position.set(-70,20,40);
+						scene.add(wall_1j);
+						var wall_1k = new THREE.Mesh(wall_1,wall_mat);
+						wall_1k.position.set(50,20,40);
+						scene.add(wall_1k);
+						var wall_1l = new THREE.Mesh(wall_1,wall_mat);
+						wall_1l.position.set(-110,20,-60);
+						scene.add(wall_1l);
+						var wall_1m = new THREE.Mesh(wall_1,wall_mat);
+						wall_1m.position.set(30,20,-80);
+						scene.add(wall_1m);
+						var wall_1n = new THREE.Mesh(wall_1,wall_mat);
+						wall_1n.position.set(-80,20,60);
+						scene.add(wall_1n);
+						
+						var wall_2 = new THREE.CubeGeometry(30,50,10);			//horizontal block 3 units long
+						var wall_2a = new THREE.Mesh(wall_2,wall_mat);
+						wall_2a.position.set(-170,20,-30);
+						scene.add(wall_2a);
+						var wall_2b = new THREE.Mesh(wall_2,wall_mat);
+						wall_2b.position.set(170,20,-30);
+						scene.add(wall_2b);
+						var wall_2c = new THREE.Mesh(wall_2,wall_mat);
+						wall_2c.position.set(-190,20,-10);
+						scene.add(wall_2c);
+						var wall_2d = new THREE.Mesh(wall_2,wall_mat);
+						wall_2d.position.set(190,20,-10);
+						scene.add(wall_2d);
+						var wall_2e = new THREE.Mesh(wall_2,wall_mat);
+						wall_2e.position.set(-170,20,10);
+						scene.add(wall_2e);
+						
+						var wall_3 = new THREE.CubeGeometry(50,50,10);			//horizontal block 5 units long
+						var wall_3a = new THREE.Mesh(wall_3,wall_mat);
+						wall_3a.position.set(-40,20,-80);
+						scene.add(wall_3a);
+						var wall_3b = new THREE.Mesh(wall_3,wall_mat);
+						wall_3b.position.set(120,20,-60);
+						scene.add(wall_3b);
+						var wall_3c = new THREE.Mesh(wall_3,wall_mat);
+						wall_3c.position.set(-50,20,-60);
+						scene.add(wall_3c);
+						var wall_3d = new THREE.Mesh(wall_3,wall_mat);
+						wall_3d.position.set(-140,20,60);
+						scene.add(wall_3d);
+						var wall_3e = new THREE.Mesh(wall_3,wall_mat);
+						wall_3e.position.set(140,20,40);
+						scene.add(wall_3e);
+						
+						var wall_4 = new THREE.CubeGeometry(150,50,10);			//horizontal block 15 units long
+						var wall_4a = new THREE.Mesh(wall_4,wall_mat);
+						wall_4a.position.set(-10,20,-40);
+						scene.add(wall_4a);
+						
+						var wall_5 = new THREE.CubeGeometry(190,50,10);			//horizontal block 19 units long
+						var wall_5a = new THREE.Mesh(wall_5,wall_mat);
+						wall_5a.position.set(90,20,60);
+						scene.add(wall_5a);
+						/*var wall_5b = new THREE.Mesh(wall_5,wall_mat);
+						wall_5b.position.set(110,20,100);
+						scene.add(wall_5b); */
+						
+						var wall_6 = new THREE.CubeGeometry(390,50,10);			//horizontal block 39 units long
+						var wall_6a = new THREE.Mesh(wall_6,wall_mat);
+						wall_6a.position.set(10,20,80);
+						scene.add(wall_6a);
+						
+						/*var wall_7 = new THREE.CubeGeometry(210,50,10);			//horizontal block 21 units long
+						var wall_7a = new THREE.Mesh(wall_7,wall_mat);
+						wall_7a.position.set(100,20,100);
+						scene.add(wall_7a);*/
+						var wall_11 = new THREE.CubeGeometry(10,50,30);			//vertical block 3 units long
+						var wall_11a = new THREE.Mesh(wall_11,wall_mat);
+						wall_11a.position.set(-10,20,-110);
+						scene.add(wall_11a);
+						var wall_11b = new THREE.Mesh(wall_11,wall_mat);
+						wall_11b.position.set(-100,20,-100);
+						scene.add(wall_11b);
+						var wall_11c = new THREE.Mesh(wall_11,wall_mat);
+						wall_11c.position.set(100,20,-100);
+						scene.add(wall_11c);
+						var wall_11d = new THREE.Mesh(wall_11,wall_mat);
+						wall_11d.position.set(-80,20,-80);
+						scene.add(wall_11d);
+						var wall_11e = new THREE.Mesh(wall_11,wall_mat);
+						wall_11e.position.set(160,20,-60);
+						scene.add(wall_11e);
+						var wall_11f = new THREE.Mesh(wall_11,wall_mat);
+						wall_11f.position.set(-160,20,-60);
+						scene.add(wall_11f);
+						var wall_11g = new THREE.Mesh(wall_11,wall_mat);
+						wall_11g.position.set(-160,20,40);
+						scene.add(wall_11g);
+						var wall_11h = new THREE.Mesh(wall_11,wall_mat);
+						wall_11h.position.set(-40,20,50);
+						scene.add(wall_11h);
+						var wall_11i = new THREE.Mesh(wall_11,wall_mat);
+						wall_11i.position.set(0,20,40);
+						scene.add(wall_11i);
+						var wall_11j = new THREE.Mesh(wall_11,wall_mat);
+						wall_11j.position.set(-160,20,-10);
+						scene.add(wall_11j);
+						
+						var wall_12 = new THREE.CubeGeometry(10,50,50);			//vertical block 5 units long
+						var wall_12a = new THREE.Mesh(wall_12,wall_mat);
+						wall_12a.position.set(-80,20,-10);
+						scene.add(wall_12a);
+						var wall_12b = new THREE.Mesh(wall_12,wall_mat);
+						wall_12b.position.set(60,20,-10);
+						scene.add(wall_12b);
+						var wall_12c = new THREE.Mesh(wall_12,wall_mat);
+						wall_12c.position.set(180,20,30);
+						scene.add(wall_12c);
+						var wall_12d = new THREE.Mesh(wall_12,wall_mat);
+						wall_12d.position.set(-20,20,50);
+						scene.add(wall_12d);
+						var wall_12e = new THREE.Mesh(wall_12,wall_mat);
+						wall_12e.position.set(-10,20,-60);
+						scene.add(wall_12e);
+						
+						var wall_13 = new THREE.CubeGeometry(10,50,60);			//vertical block 6 units long
+						var wall_13a = new THREE.Mesh(wall_13,wall_mat);
+						wall_13a.position.set(-180,20,-65);
+						scene.add(wall_13a);
+						var wall_13b = new THREE.Mesh(wall_13,wall_mat);
+						wall_13b.position.set(-180,20,45);
+						scene.add(wall_13b);
+						var wall_13c = new THREE.Mesh(wall_13,wall_mat);
+						wall_13c.position.set(180,20,-65);
+						scene.add(wall_13c);
+						var wall_13d = new THREE.Mesh(wall_13,wall_mat);
+						wall_13d.position.set(160,20,5);
+						scene.add(wall_13d);
+						
+						var wall_14 = new THREE.CubeGeometry(10,50,100);			//vertical block 10 units long
+						var wall_14a = new THREE.Mesh(new THREE.CubeGeometry(10,50,100),wall_mat);
+						wall_14a.position.set(-140,20,-5);
+                                              //  wall_14aa = new THREE.Mesh(new THREE.CubeGeometry(10,50,10), wall_mat);
+                                              //  wall_14aa.position.set(-140,20,-45);
+						scene.add(wall_14a);
+                                              //  scene.add(wall_14aa);
+						var wall_14b = new THREE.Mesh(wall_14,wall_mat);
+						wall_14b.position.set(-120,20,5);
+						scene.add(wall_14b);
+						var wall_14c = new THREE.Mesh(wall_14,wall_mat);
+						wall_14c.position.set(-100,20,-15);
+						scene.add(wall_14c);
+						var wall_14d = new THREE.Mesh(wall_14,wall_mat);
+						wall_14d.position.set(100,20,-5);
+						scene.add(wall_14d);
+						
+						var wall_15 = new THREE.CubeGeometry(10,50,140);			//vertical block 14 units long
+						var wall_15a = new THREE.Mesh(wall_15,wall_mat);
+						wall_15a.position.set(80,20,-35);
+						scene.add(wall_15a);
+						
+						var wall_16 = new THREE.CubeGeometry(10,50,110);			//vertical block 11 units long
+						var wall_16a = new THREE.Mesh(wall_16,wall_mat);
+						wall_16a.position.set(120,20,-10);
+						scene.add(wall_16a);
+						
+						var wall_17 = new THREE.CubeGeometry(10,50,80);			//vertical block 8 units long
+						var wall_17a = new THREE.Mesh(wall_17,wall_mat);
+						wall_17a.position.set(140,20,-25);
+						scene.add(wall_17a);
+					//	obstacles.concat(wall_17a, wall_16a, wall_15a, wall_14a, wall_14b, wall_14c, wall_14d, wall_13a, wall_13b, wall_13c, wall_13d, wall_12a, wall_12b, wall_12c, wall_12d, wall_12e, wall_11a, wall_11b, wall_11c, wall_11d, wall_11e, wall_11f, wall_11g, wall_11h, wall_11i, wall_11j, wall_6a, wall_5a, wall_4a, wall_3a, wall_3b, wall_3c, wall_3d, wall_3e, wall_2a, wall_2b, wall_2c, wall_2d, wall_2e, wall_1a, wall_1b, wall_1c, wall_1d, wall_1e, wall_1f, wall_1g, wall_1h, wall_1i, wall_1j, wall_1k, wall_1l, wall_1m, wall_1n, wall_front_2, wall_front_1, wall_left, wall_right, wall_back);
+						//THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_17a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_17a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_16a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_15a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_14a ) );
+                                               // THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_14aa ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_14b ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_14c ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_14d ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_13a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_13b ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_13c ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_13d ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_12a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_12b ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_12c ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_12d ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_12e ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11b ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11c ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11d ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11e ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11f ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11g ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11h ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11i ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_11j ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_6a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_5a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_4a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_3a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_3b ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_3c) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_3d ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_3e ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_2a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_2b ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_2c) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_2d ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_2e ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1a ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1b ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1c) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1d ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1e ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1f ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1g ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1h ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1i ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1j ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1k ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1l ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1m ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_1n ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_front_2 ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_front_1 ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_back ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_left ) );
+						THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB( wall_right ) );
+
+								
+								
+						
+						
+						scene.add(camera);
+						scene.add(floor);
+						scene.add(wall_left);
+						scene.add(wall_right);
+						scene.add(wall_back);
+                                               
+									                              
+						
+						light = new THREE.PointLight(0xFFAA88, 1.0, 1000);
+						
+						scene.add(light);
+                                               
+						
+						
+
+					  
+						//var directionalLight = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						//directionalLight.position.set(1,-1,1);
+						//scene.add(directionalLight); //adding directional light to the scene.
+					//var directionalLight2 = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						//directionalLight2.position.set(-1,1,0);
+						//scene.add(directionalLight2);
+					        
+						}
+
+
+					    //Adding a listener for 'keydown' events. By this listener, all key events will be
+					    //passed to the function 'onDocumentKeyDown'. There's another event type 'keypress'.
+					    //It will report only the visible characters like 'a', but not the function keys
+					    //like 'cursor up'.
+
+				    	document.addEventListener("keydown", onDocumentKeyDown, false);
+
+
+					
+
+ 
+	
+
+
+					function onDocumentKeyDown(event){
+						keycode = event.which;
+                        
+                                                //object front
+						if(keycode == 38){
+							xObj -= 1;
+                                                        down = false;
+							up = true;
+                                                        right = false;
+							left = false;
+							                       
+							
+						}
+						//object back
+						else if(keycode == 40){
+
+							xObj += 1;
+                                                        down = true;
+							up = false;
+                                                        right = false;
+							left = false;
+						}
+						//object right
+						else if(keycode == 39){
+							zObj -= 1;
+                                                        down = false;
+							up = false;
+                                                        right = true;
+							left = false;
+							
+                                                       
+						}
+						//object left
+						else if(keycode == 37){
+							zObj += 1;
+                                                        down = false;
+							up = false;
+                                                        right = false;
+							left = true;
+							
+                                                        
+						}
+                                           
+
+                                        
+					}
+
+	//animating scene 
+
+					function animateScene(){
+
+
+
+
+						
+					
+						feet.right.position.setZ(Math.sin(Date.now()*0.005)*2);
+						hands.left.position.setZ(Math.sin(Date.now()*0.005)*2);
+						feet.left.position.setZ(-(Math.sin(Date.now()*0.005)*2));
+						hands.right.position.setZ(-(Math.sin(Date.now()*0.005)*2));
+						mesh.position.set(xObj, 0, zObj);
+                        light.position.set(xObj,10,zObj);
+
+                                               
+
+					    mesh.doubleSided = true;
+
+
+					    var rays = [
+					                new THREE.Vector3(0, 0, 1),
+					                new THREE.Vector3(1, 0, 1),
+					                new THREE.Vector3(1, 0, 0),
+					                new THREE.Vector3(1, 0, -1),
+					                new THREE.Vector3(0, 0, -1),
+					                new THREE.Vector3(-1, 0, -1),
+					                new THREE.Vector3(-1, 0, 0),
+					                new THREE.Vector3(-1, 0, 1)
+        							];
+						
+        				for(t=0; t < rays.length; ++t){
+						var ray = new THREE.Ray( mesh.position, rays[t] );
+
+						var c = THREE.Collisions.rayCastNearest( ray );
+						
+						if ( c && c.distance <= 2 ) {
+                                                        if(keycode == 38){xObj += 1}
+														if(keycode == 40){xObj -= 1}
+                                                        if(keycode == 39){zObj += 1}
+                                                        if(keycode == 37){zObj -= 1}
+							
+						}
+						}
+						 	
+
+				    
+					    
+					    
+
+					    camera.position.set(xObj,800 ,zObj );
+					    //camera.lookAt(cube.position);
+                                            camera.lookAt(new THREE.Vector3(xObj,0,zObj));
+                                            
+                        
+                        if(xObj >= -52 && xObj <= -48 && zObj <= 52 && zObj >= 48 && is_mission1 == false){
+                        	document.getElementById('message').innerHTML = "<b>Congratulations you have found the key. You can now play mission 1.</b> ";
+
+                        	var add = document.getElementById( "mission1_msg" );
+
+								add.style.display = "inherit";
+								is_mission1 = true;
+								play_track_maze.pause();
+								return;
+
+                        } 
+                        //2nd check point
+                        if(xObj >= -22 && xObj <= -18 && zObj <= -108 && zObj >= -112 && is_mission2 == false && is_mission1 == true){
+                        
+
+                        	var add = document.getElementById( "mission2_msg" );
+
+								add.style.display = "inherit";
+								is_mission2 = true;
+								play_track_maze.pause();
+								return;
+
+                        } 
+                        //3rd checck point
+                         if(xObj >= 130 && xObj <= 135 && zObj <= -45 && zObj >= -50 && is_mission3 == false && is_mission1 == true && is_mission2 == true){
+                        	
+
+                        	var add = document.getElementById( "mission3_msg" );
+
+								add.style.display = "inherit";
+								is_mission3 = true;
+								play_track_maze.pause();
+								return;
+
+                        } 
+                        //Final point
+                         if(xObj >= 0 && xObj <= 5 && zObj <= 0 && zObj >= 5 && is_mission3 == true && is_mission1 == true && is_mission2 == true){
+                        	
+
+                        	var add = document.getElementById( "final_msg" );
+
+								add.style.display = "inherit";
+								
+								play_track_maze.pause();
+								return;
+
+                        }                
+					   
+
+					   
+						requestAnimationFrame(animateScene);
+						
+						renderer.render(scene, camera); 
+
+
+						
+
+					} 
+}
+
+function mission1(){
+	var play_track_mission1 = document.getElementById("mission1");
+	play_track_mission1.play();
+	var add_intro = document.getElementById("mission1_intro");
+	add_intro.style.display = "none";
+
+	if(is_mission1 == true){
+	var handle;
+	var scene = new THREE.Scene();
+	var i = 0; //counts the total number of rings 
+	var score = 0; //Used to store the score of player.
+	var factor = 1; //Decides the speed of camera and cube.
+	var animationSpeed = 20;
+	var dist = 0; //position of ring in z direction.
+	var test = 0; //used to check whether the ring has passed or not.
+	var xSpeed = 0; //x co-ordinate of cube.
+	var ySpeed = 0; //y co-ordinate of cube.
+	var zSpeed = 200; //z co-ordinate of cube.
+	var cameraZ = 300; //z co-ordinate of camera.
+	
+	
+
+	
+	var camera; //used to create WebGL camera
+	var renderer; //used to create WebGL renderer
+	var geometry; //used to define object's geometry
+	var material; //used to define object's material
+	var Rmaterial; //used to define ring's material
+	var cube; // stores the mesh(as of now the geometry is cube)
+	var ring; // stores the ring's mesh
+	var num;
+	var xRing = new Array(50);
+	var zRing = new Array(50);
+	var dec = 200;
+	zRing[0] = 0;
+
+	var radius = 1.7;
+	var tubeRadius = 0.5;
+	var radialSegments = 2*15;
+	var tubularSegments = 8*3;
+	var arc = Math.PI * 2;
+       
+        
+	initialiseScene(); //calling a function which initialises the scene
+        setAnim();
+	animateScene(); //calling a function which will enables the animation
+
+
+
+
+
+					function initialiseScene(){
+
+						camera = new THREE.PerspectiveCamera(10, window.innerWidth/window.innerHeight, 1, 10000); 
+						renderer = new THREE.WebGLRenderer(); 
+						renderer.setSize(window.innerWidth, window.innerHeight); 
+						renderer.ShadowMapEnabled = true;
+						renderer.ShadowMapType = THREE.PCFSoftShadowMap;
+
+						document.body.appendChild(renderer.domElement);
+							var spotLight	= new THREE.SpotLight( 0xFFAA88 );
+							spotLight.target.position.set( 0, 2, 0 );
+							spotLight.shadowCameraNear	= 0.01;		
+							spotLight.castShadow		= true;
+							spotLight.shadowDarkness	= 0.5;
+							spotLight.shadowCameraVisible	= true;
+						// console.dir(spotLight)
+						// spotLight.shadowMapWidth	= 1024;
+						// spotLight.shadowMapHeight	= 1024;
+							scene.add( spotLight ); 
+						     var head = new THREE.SphereGeometry(10/32, 50, 50),
+		        body = new THREE.SphereGeometry(16/32,50,50),
+            hand = new THREE.SphereGeometry(4/32, 50, 50),
+            foot = new THREE.SphereGeometry(8/32, 50, 50, 0, 3.14 * 2, 0, 3.14 / 2),
+            nose = new THREE.SphereGeometry(2/32, 50, 50),
+            // Set the material, the "skin"
+            material = new THREE.MeshNormalMaterial();
+        // Set the character modelisation object
+        mesh = new THREE.Object3D();
+        mesh.position.y = 0;
+        mesh.position.z = 0;
+        mesh.position.x = 0;
+        // Set and add its head
+        head = new THREE.Mesh(head, material);
+        head.position.y = 25/32;
+        mesh.add(head);
+        // Set and add its body
+        body = new THREE.Mesh(body, material);
+        body.position.y = 0;
+        mesh.add(body);
+        // Set and add its hands
+        hands = {
+            left: new THREE.Mesh(hand, material),
+            right: new THREE.Mesh(hand, material)
+        };
+        hands.left.position.x = -20/32;
+        hands.left.position.y = -4/32;
+        hands.right.position.x = 20/32;
+        hands.right.position.y = -4/32;
+        mesh.add(hands.left);
+        mesh.add(hands.right);
+        // Set and add its feet
+        feet = {
+            left: new THREE.Mesh(foot, material),
+            right: new THREE.Mesh(foot, material)
+        };
+        feet.left.position.x = -10/32;
+        feet.left.position.y = -24/32;
+        feet.left.rotation.y = Math.PI / 4;
+        feet.right.position.x = 10/32;
+        feet.right.position.y = -24/32;
+        feet.right.rotation.y = Math.PI / 4;
+        mesh.add(feet.left);
+        mesh.add(feet.right);
+        // Set and add its nose
+        nose = new THREE.Mesh(nose, material);
+        nose.position.y = 25/32;
+        nose.position.z = -10/32;
+        mesh.add(nose);
+scene.add(mesh);
+						
+						
+					  var room = new THREE.CubeGeometry(100,0.5,15000);
+						var floorMat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('floor1.jpg')});
+						var floor = new THREE.Mesh(room,floorMat);
+                                                floor.position.set(0,-3,0);
+                        var wall = new THREE.CubeGeometry(0.5,500,20000);
+                        var wall_left_image = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall1.jpg')});
+                        var wall_right_image = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall1.jpg')});
+                        var wall_left = new THREE.Mesh(wall,wall_left_image);
+                                                wall_left.position.set(-100,0,0);
+                        var wall_right = new THREE.Mesh(wall,wall_right_image);
+                                                wall_right.position.set(100,0,0);
+                        
+                        var sky = new THREE.CubeGeometry(500, 0.5, 20000);
+                        var horizon = new THREE.CubeGeometry(1000, 1000, 0.5);
+                        var sky_mat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('sky1.jpg')});
+                        var horizon_mat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('horizon1.jpg')});
+                        var sky_add = new THREE.Mesh(sky,sky_mat);
+                        var horizon_add = new THREE.Mesh(horizon,horizon_mat);
+                        sky_add.position.set(0,100,0); 
+                        horizon_add.position.set(0,0,-10000);
+                        
+
+						
+						scene.add(camera);
+						scene.add(floor);
+						scene.add(wall_left);
+						scene.add(wall_right);
+						scene.add(sky_add);
+                                                scene.add(horizon_add);
+						
+						light = new THREE.SpotLight(0x00ff00);
+						light.castShadow = true;
+						scene.add(light);
+                                                light.position.set(0,0,0);
+						renderer.shadowMapEnabled = true;
+						
+
+					  
+						var directionalLight = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						directionalLight.position.set(1,-1,1);
+						scene.add(directionalLight); //adding directional light to the scene.
+					var directionalLight2 = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						directionalLight2.position.set(-1,1,0);
+						scene.add(directionalLight2);
+						camera.position.z = 0; //setting the co ordinates of camera.
+						camera.position.y = 0;
+
+						for( num = 1; num<=36 ; num++){ 
+							zRing[num] = zRing[num-1] - dec;
+							xRing[num-1] = (Math.random()*30 - 10);
+
+							Rmaterial = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('ring1.jpg')});
+
+
+							ring = new THREE.Mesh( new THREE.TorusGeometry( radius, tubeRadius, radialSegments, tubularSegments, arc ) , Rmaterial );
+			
+							ring.position.set(xRing[num-1], 0 , zRing[num-1]);
+							
+  							
+							scene.add(ring);
+							
+						}
+
+
+					    //Adding a listener for 'keydown' events. By this listener, all key events will be
+					    //passed to the function 'onDocumentKeyDown'. There's another event type 'keypress'.
+					    //It will report only the visible characters like 'a', but not the function keys
+					    //like 'cursor up'.
+
+				    	document.addEventListener("keydown", onDocumentKeyDown, false);
+                                        renderer.render(scene, camera); 
+
+
+					}
+
+ 
+	
+
+
+					function onDocumentKeyDown(event){
+						var keycode = event.which;
+						//cursor left
+						if(keycode == 37){
+							xSpeed -= 0.5;
+						}
+						//cursor right
+						else if(keycode == 39){
+							xSpeed += 0.5;
+						}
+							}
+					
+
+	//animating scene 
+
+					function animateScene(){
+
+
+						//cube.rotation.x  =  Date.now() * 0.001; 
+						feet.right.position.setZ(Math.sin(Date.now()*0.005)*2);
+						hands.left.position.setZ(Math.sin(Date.now()*0.005)*2);
+						feet.left.position.setZ(-(Math.sin(Date.now()*0.005)*2));
+						hands.right.position.setZ(-(Math.sin(Date.now()*0.005)*2));
+						
+						mesh.position.set(xSpeed, ySpeed, zSpeed);
+
+					    mesh.doubleSided = true;
+					    
+					    
+					    camera.position.z = cameraZ;
+					    
+					    
+					    cameraZ -= factor; 
+					    zSpeed -= factor;
+						
+						
+						renderer.render(scene, camera); 
+						if(i == 5){
+							clearInterval(handle);
+							animationSpeed = 10;
+							handle = setInterval(animateScene,animationSpeed);
+						}
+						
+						
+
+
+						
+						//checks whether z co ordinate of ring and cube is same or not.
+
+						if(zSpeed == zRing[test]){
+							
+
+							if(i==35){
+								if(score < 20){
+									document.getElementById('score').innerHTML = "<b>Game Over and Your Score is:</b> " + score;
+									factor = 0;
+									return;
+
+								}
+								else{
+									document.getElementById('score').innerHTML = "<b>Congratulations you have completed the mission and Your Score is:</b> " + score;
+									factor = 0;
+									is_mission1 = true;
+									play_track_mission1.pause();
+									remove2();
+								}
+							}
+							
+							++i;
+
+							document.getElementById('message').innerHTML = "Ring number "+i+" has passed! ";
+							
+
+						
+
+							if (Math.abs(xRing[test]-xSpeed) < 1.1 ) {
+								++score;
+								document.getElementById('score').innerHTML = "<b>Your Score:</b> "+score;
+								document.getElementById('point').play();
+							}
+
+							
+
+
+							
+							test++;
+							
+						}
+
+						//requestAnimationFrame(animateScene);
+						
+					} 
+					function setAnim(){handle = setInterval(animateScene,animationSpeed);}
+
+	}
+
+}
+
+function mission2(){
+	var play_track_mission2 = document.getElementById("mission2");
+	play_track_mission2.play();
+	var add_intro = document.getElementById("mission2_intro");
+	add_intro.style.display = "none";
+	if (is_mission2 == true) {
+	var handle;
+	var life = 4;
+	var scene = new THREE.Scene();
+	var i = 0; //counts the total number of rings 
+	var score = 0; //Used to store the score of player.
+	var factor = 1; //Decides the speed of camera and cube.
+	var animationSpeed = 20;
+	var dist = 0; //position of ring in z direction.
+	var test = 0; //used to check whether the ring has passed or not.
+	var xSpeed = 0; //x co-ordinate of cube.
+	var ySpeed = 0; //y co-ordinate of cube.
+	var zSpeed = 200; //z co-ordinate of cube.
+	var cameraZ = 300; //z co-ordinate of camera.
+	
+	
+
+	
+	var camera; //used to create WebGL camera
+	var renderer; //used to create WebGL renderer
+	var geometry; //used to define object's geometry
+	var material; //used to define object's material
+	var Rmaterial; //used to define ring's material
+	var cube; // stores the mesh(as of now the geometry is cube)
+	var ring; // stores the ring's mesh
+	var num;
+	var xRing = new Array(50);
+	var zRing = new Array(50);
+	var dec = 200;
+	zRing[0] = 0;
+
+	var radius = 1.7;
+	var tubeRadius = 0.5;
+	var radialSegments = 2*15;
+	var tubularSegments = 8*3;
+	var arc = Math.PI * 2;
+       
+        
+	initialiseScene(); //calling a function which initialises the scene
+	animateScene(); //calling a function which will enables the animation
+
+
+
+
+
+					function initialiseScene(){
+
+						camera = new THREE.PerspectiveCamera(10, window.innerWidth/window.innerHeight, 1, 10000); 
+						renderer = new THREE.WebGLRenderer(); 
+						renderer.setSize(window.innerWidth, window.innerHeight); 
+						renderer.ShadowMapEnabled = true;
+						renderer.ShadowMapType = THREE.PCFSoftShadowMap;
+
+						document.body.appendChild(renderer.domElement);
+							var spotLight	= new THREE.SpotLight( 0xFFAA88 );
+							spotLight.target.position.set( 0, 2, 0 );
+							spotLight.shadowCameraNear	= 0.01;		
+							spotLight.castShadow		= true;
+							spotLight.shadowDarkness	= 0.5;
+							spotLight.shadowCameraVisible	= true;
+						// console.dir(spotLight)
+						// spotLight.shadowMapWidth	= 1024;
+						// spotLight.shadowMapHeight	= 1024;
+							scene.add( spotLight ); 
+						     var head = new THREE.SphereGeometry(10/32, 50, 50),
+		        body = new THREE.SphereGeometry(16/32,50,50),
+            hand = new THREE.SphereGeometry(4/32, 50, 50),
+            foot = new THREE.SphereGeometry(8/32, 50, 50, 0, 3.14 * 2, 0, 3.14 / 2),
+            nose = new THREE.SphereGeometry(2/32, 50, 50),
+            // Set the material, the "skin"
+            material = new THREE.MeshNormalMaterial();
+        // Set the character modelisation object
+        mesh = new THREE.Object3D();
+        mesh.position.y = 0;
+        mesh.position.z = 0;
+        mesh.position.x = 0;
+        // Set and add its head
+        head = new THREE.Mesh(head, material);
+        head.position.y = 25/32;
+        mesh.add(head);
+        // Set and add its body
+        body = new THREE.Mesh(body, material);
+        body.position.y = 0;
+        mesh.add(body);
+        // Set and add its hands
+        hands = {
+            left: new THREE.Mesh(hand, material),
+            right: new THREE.Mesh(hand, material)
+        };
+        hands.left.position.x = -20/32;
+        hands.left.position.y = -4/32;
+        hands.right.position.x = 20/32;
+        hands.right.position.y = -4/32;
+        mesh.add(hands.left);
+        mesh.add(hands.right);
+        // Set and add its feet
+        feet = {
+            left: new THREE.Mesh(foot, material),
+            right: new THREE.Mesh(foot, material)
+        };
+        feet.left.position.x = -10/32;
+        feet.left.position.y = -24/32;
+        feet.left.rotation.y = Math.PI / 4;
+        feet.right.position.x = 10/32;
+        feet.right.position.y = -24/32;
+        feet.right.rotation.y = Math.PI / 4;
+        mesh.add(feet.left);
+        mesh.add(feet.right);
+        // Set and add its nose
+        nose = new THREE.Mesh(nose, material);
+        nose.position.y = 25/32;
+        nose.position.z = -10/32;
+        mesh.add(nose);
+scene.add(mesh);
+						
+						
+					  var room = new THREE.CubeGeometry(100,0.5,20000);
+						var floorMat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('floor2.jpg')});
+						var floor = new THREE.Mesh(room,floorMat);
+                                                floor.position.set(0,-3,0);
+                        var wall = new THREE.CubeGeometry(0.5,500,20000);
+                        var wall_left_image = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall2.jpg')});
+                        var wall_right_image = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall2.jpg')});
+                        var wall_left = new THREE.Mesh(wall,wall_left_image);
+                                                wall_left.position.set(-100,0,0);
+                        var wall_right = new THREE.Mesh(wall,wall_right_image);
+                                                wall_right.position.set(100,0,0);
+                        
+                        var sky = new THREE.CubeGeometry(500, 0.5, 20000);
+                        var horizon = new THREE.CubeGeometry(1000, 1000, 0.5);
+                        var sky_mat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('sky2.jpg')});
+                        var horizon_mat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('horizon2.jpg')});
+                        var sky_add = new THREE.Mesh(sky,sky_mat);
+                        var horizon_add = new THREE.Mesh(horizon,horizon_mat);
+                        sky_add.position.set(0,100,0); 
+                        horizon_add.position.set(0,0,-10000);
+                        
+
+						
+						scene.add(camera);
+						scene.add(floor);
+						scene.add(wall_left);
+						scene.add(wall_right);
+						scene.add(sky_add);
+                                                scene.add(horizon_add);
+						
+						light = new THREE.SpotLight(0x00ff00);
+						light.castShadow = true;
+						scene.add(light);
+                                                light.position.set(0,0,0);
+						renderer.shadowMapEnabled = true;
+						
+
+					  
+						var directionalLight = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						directionalLight.position.set(1,-1,1);
+						scene.add(directionalLight); //adding directional light to the scene.
+					var directionalLight2 = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						directionalLight2.position.set(-1,1,0);
+						scene.add(directionalLight2);
+						camera.position.z = 0; //setting the co ordinates of camera.
+						camera.position.y = 0;
+
+						for( num = 1; num<=50 ; num++){ 
+							zRing[num] = zRing[num-1] - dec;
+							xRing[num-1] = (Math.random()*30 - 10);
+
+							Rmaterial = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('ring2.jpg')});
+
+
+							ring = new THREE.Mesh( new THREE.TorusGeometry( radius, tubeRadius, radialSegments, tubularSegments, arc ) , Rmaterial );
+			
+							ring.position.set(xRing[num-1], 0 , zRing[num-1]);
+							
+  							
+							scene.add(ring);
+							
+						}
+
+
+					    //Adding a listener for 'keydown' events. By this listener, all key events will be
+					    //passed to the function 'onDocumentKeyDown'. There's another event type 'keypress'.
+					    //It will report only the visible characters like 'a', but not the function keys
+					    //like 'cursor up'.
+
+				    	document.addEventListener("keydown", onDocumentKeyDown, false);
+
+
+					}
+
+ 
+	
+
+
+					function onDocumentKeyDown(event){
+						var keycode = event.which;
+						//cursor left
+						if(keycode == 37){
+							xSpeed -= 0.5;
+						}
+						//cursor right
+						else if(keycode == 39){
+							xSpeed += 0.5;
+						}
+							}
+					
+
+	//animating scene 
+
+					function animateScene(){
+
+
+						//mesh.rotation.x  =  Date.now() * 0.001;
+												feet.right.position.setZ(Math.sin(Date.now()*0.005)*2);
+						hands.left.position.setZ(Math.sin(Date.now()*0.005)*2);
+						feet.left.position.setZ(-(Math.sin(Date.now()*0.005)*2));
+						hands.right.position.setZ(-(Math.sin(Date.now()*0.005)*2));
+						mesh.position.set(xSpeed, ySpeed, zSpeed);
+
+					    mesh.doubleSided = true;
+					    
+					    
+					    camera.position.z = cameraZ;
+					    
+					    
+					    cameraZ -= factor; 
+					    zSpeed -= factor;
+						
+						
+						renderer.render(scene, camera); 
+						if(i == 5){
+							clearInterval(handle);
+							animationSpeed = 10;
+							handle = setInterval(animateScene,animationSpeed);
+						}
+						if(i == 10){
+							clearInterval(handle);
+							animationSpeed = 8;
+							handle = setInterval(animateScene,animationSpeed);
+						}
+						if(i == 25){
+							animationSpeed = 6;
+							clearInterval(handle);
+							handle = setInterval(animateScene,animationSpeed);
+						}
+
+						if (life<=0) { 
+
+							if(score < 25){
+
+									document.getElementById('score').innerHTML = "<b>Game Over and Your Score is:</b> " + score;
+									document.getElementById('life').innerHTML = "<b>Your Life: 0</b> ";
+									factor = 0;
+									return;
+								}
+								else{
+									document.getElementById('score').innerHTML = "<b>Congratulations you have completed the mission and Your Score is:</b> " + score;
+									document.getElementById('life').innerHTML = "<b>Your Life: 0</b> ";
+									factor = 0;
+									is_mission2 = true;
+
+									remove4();
+									return;
+								}
+								
+							}
+						
+
+
+						
+						//checks whether z co ordinate of ring and cube is same or not.
+
+						if(zSpeed == zRing[test]){
+							
+
+							if(i==50){
+								if(score < 25){
+									document.getElementById('score').innerHTML = "<b>Game Over and Your Score is:</b> " + score;
+									factor = 0;
+									return;
+
+								}
+								else{
+									document.getElementById('score').innerHTML = "<b>Congratulations you have completed the mission and Your Score is:</b> " + score;
+									factor = 0;
+									is_mission2 = true;
+									remove4();
+									return;
+								}
+							}
+							
+							++i;
+
+							document.getElementById('message').innerHTML = "Ring number "+i+" has passed! ";
+							
+
+						
+
+							if (Math.abs(xRing[test]-xSpeed) <= 1 ) {
+								++score;
+								document.getElementById('score').innerHTML = "<b>Your Score:</b> "+score;
+								document.getElementById('point').play();
+							}
+
+							if(Math.abs(xRing[test]-xSpeed)>1 && Math.abs(xRing[test]-xSpeed)<2.7){
+
+								life--;
+								document.getElementById('life').innerHTML = "<b>Your Life:</b> "+life;
+								document.getElementById('broken').play();
+							}
+
+
+
+							
+
+
+							
+							test++;
+							
+						}
+
+						//requestAnimationFrame(animateScene);
+						
+					} 
+					handle = setInterval(animateScene,animationSpeed);
+
+	}
+}
+
+function mission3(){
+		var add_intro = document.getElementById("mission3_intro");
+	add_intro.style.display = "none";
+	if(is_mission3 == true){
+
+var scene = new THREE.Scene();
+	var obst = [];
+	var temp = 0;
+	var life = 4;
+	var touch = false;
+	var checklife;
+	var count = 0; 
+	var dec = 200;
+	
+	
+	
+	
+	var score = 0; //Used to store the score of player.
+	var factor = 1; //Decides the speed of camera and cube.
+	var light;
+	var test = 0; //used to check whether the ring has passed or not.
+	var xSpeed = 0; //x co-ordinate of cube.
+	var ySpeed = 0; //y co-ordinate of cube.
+	var zSpeed = 200; //z co-ordinate of cube.
+	var cameraZ = 400; //z co-ordinate of camera.
+	var num = 0;
+	var xObs = new Array(50);
+	var zObs = new Array(50);
+	zObs[0] = 100;
+	
+
+	var gravity = 20;
+	var ground = true;
+	var yPos = 0;
+	var xPos = 0;
+	
+	var t = 0; //
+	
+	var camera; //used to create WebGL camera
+	var renderer; //used to create WebGL renderer
+	var geometry; //used to define object's geometry
+	var material; //used to define object's material
+	var Rmaterial; //used to define ring's material
+	var cube; // stores the mesh(as of now the geometry is cube)
+	var ring; // stores the ring's mesh
+	initialiseScene(); //calling a function which initialises the scene
+	animateScene(); //calling a function which will enables the animation
+
+
+
+
+
+					function initialiseScene(){
+
+
+						camera = new THREE.PerspectiveCamera(10, window.innerWidth/window.innerHeight, 1, 10000); 
+						renderer = new THREE.WebGLRenderer(); 
+						renderer.setSize(window.innerWidth, window.innerHeight); 
+						document.body.appendChild(renderer.domElement); 
+						
+						sun = new THREE.DirectionalLight( 0xffffff );
+						sun.position.set( 10, 10, 10 );
+						scene.add( sun );
+						var play_track_mission3 = document.getElementById('track');
+						play_track_mission3.play();
+						
+
+						 
+						     var head = new THREE.SphereGeometry(10/32, 50, 50),
+		        body = new THREE.SphereGeometry(16/32,50,50),
+            hand = new THREE.SphereGeometry(4/32, 50, 50),
+            foot = new THREE.SphereGeometry(8/32, 50, 50, 0, 3.14 * 2, 0, 3.14 / 2),
+            nose = new THREE.SphereGeometry(2/32, 50, 50),
+            // Set the material, the "skin"
+            material = new THREE.MeshNormalMaterial();
+        // Set the character modelisation object
+        mesh = new THREE.Object3D();
+        mesh.position.y = 0;
+        mesh.position.z = 0;
+        mesh.position.x = 0;
+        // Set and add its head
+        head = new THREE.Mesh(head, material);
+        head.position.y = 25/32;
+        mesh.add(head);
+        // Set and add its body
+        body = new THREE.Mesh(body, material);
+        body.position.y = 0;
+        mesh.add(body);
+        // Set and add its hands
+        hands = {
+            left: new THREE.Mesh(hand, material),
+            right: new THREE.Mesh(hand, material)
+        };
+        hands.left.position.x = -20/32;
+        hands.left.position.y = -4/32;
+        hands.right.position.x = 20/32;
+        hands.right.position.y = -4/32;
+        mesh.add(hands.left);
+        mesh.add(hands.right);
+        // Set and add its feet
+        feet = {
+            left: new THREE.Mesh(foot, material),
+            right: new THREE.Mesh(foot, material)
+        };
+        feet.left.position.x = -10/32;
+        feet.left.position.y = -24/32;
+        feet.left.rotation.y = Math.PI / 4;
+        feet.right.position.x = 10/32;
+        feet.right.position.y = -24/32;
+        feet.right.rotation.y = Math.PI / 4;
+        mesh.add(feet.left);
+        mesh.add(feet.right);
+        // Set and add its nose
+        nose = new THREE.Mesh(nose, material);
+        nose.position.y = 25/32;
+        nose.position.z = -10/32;
+        mesh.add(nose);
+scene.add(mesh);
+						var room = new THREE.CubeGeometry(100,0.5,15000);
+						var floorMat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('floor3.jpg')});
+						var floor = new THREE.Mesh(room,floorMat);
+                                                floor.position.set(0,-3,0);
+                                                
+                        var wall = new THREE.CubeGeometry(0.5,500,15000);
+                        var wall_left_image = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall.jpg')});
+                        var wall_right_image = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall.jpg')});
+                        var wall_left = new THREE.Mesh(wall,wall_left_image);
+                                                wall_left.position.set(-100,0,0);
+                        var wall_right = new THREE.Mesh(wall,wall_right_image);
+                                                wall_right.position.set(100,0,0);
+                        
+                        var sky = new THREE.CubeGeometry(500, 0, 15000);
+                        var horizon = new THREE.CubeGeometry(1000, 1000, 0.5);
+                        var sky_mat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall.jpg')});
+                        var horizon_mat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('horizon.jpg')});
+                        var sky_add = new THREE.Mesh(sky,sky_mat);
+                        var horizon_add = new THREE.Mesh(horizon,horizon_mat);
+                        sky_add.position.set(0,100,0); 
+                        horizon_add.position.set(0,0,-10000);
+                        
+
+						
+						scene.add(camera);
+						scene.add(floor);
+						scene.add(wall_left);
+						scene.add(wall_right);
+						scene.add(sky_add);
+                                                scene.add(horizon_add);
+						
+						light = new THREE.SpotLight(0x00ff00);
+						light.castShadow = true;
+						scene.add(light);
+                                                light.position.set(0,0,0);
+						renderer.shadowMapEnabled = true;
+						//cube.castShadow = true;
+
+					  
+						var directionalLight = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						directionalLight.position.set(1,-1,1);
+                                                directionalLight.castShadow = true;
+						scene.add(directionalLight); //adding directional light to the scene.
+					var directionalLight2 = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						directionalLight2.position.set(-1,1,0);
+						scene.add(directionalLight2);
+					
+
+
+						for( num = 1; num<=45 ; num++){
+							zObs[num] = zObs[num-1] - dec;
+							xObs[num-1] = (Math.random()*30 - 10);
+							if(num == 10){
+								dec = 150;
+							}
+			
+							var mat = new THREE.MeshLambertMaterial( {map: THREE.ImageUtils.loadTexture('obstacle.jpg')} );
+							obstacle = new THREE.Mesh( new THREE.CylinderGeometry( 3, 5, 5, 8, 0 ), mat );
+							obstacle.position.set(xObs[num-1],0,zObs[num-1]);
+							THREE.Collisions.colliders.push(
+  							THREE.CollisionUtils.MeshOBB( obstacle ) );
+  							obst.push(obstacle);
+							scene.add(obstacle);
+							  //adding the geometry to the scene.
+						}
+
+
+					    //Adding a listener for 'keydown' events. By this listener, all key events will be
+					    //passed to the function 'onDocumentKeyDown'. There's another event type 'keypress'.
+					    //It will report only the visible characters like 'a', but not the function keys
+					    //like 'cursor up'.
+
+				    	document.addEventListener("keydown", onDocumentKeyDown, false);
+
+
+					}
+
+ 
+	
+
+
+					function onDocumentKeyDown(event){
+						var keycode = event.which;
+						//cursor left
+						if(keycode == 37){
+							xPos -= 0.5;
+							
+						}
+						//cursor right
+						else if(keycode == 39){
+
+							xPos += 0.5;
+							
+						}
+						//space bar
+						else if(keycode == 32){
+							if (ground) {
+							ySpeed = 120;
+							ground = false;
+							document.getElementById('jump').play();
+						}
+							
+						}
+						//up arrow
+						//else if(keycode == 38){
+						//	zSpeed -= 1;
+						//}
+						//down arrow
+						//else if(keycode == 40){
+						//	zSpeed += 1;
+						//}
+					}
+
+	//animating scene 
+
+					function animateScene(){
+                                        if(count == 45){
+
+                                        	factor = 0; 
+                                        	is_mission3 = true;
+                                        	play_track_mission3.pause();
+                                        	remove6();
+                                        	return;
+                                        }
+						
+							
+							ySpeed = ySpeed - gravity*0.1;
+							yPos = yPos + ySpeed*0.001 - gravity*0.01*0.01/2;
+							
+
+						var ray = new THREE.Ray( mesh.position, new THREE.Vector3(0,0,-1) );
+
+						var c = THREE.Collisions.rayCastNearest( ray );
+
+												feet.right.position.setZ(Math.sin(Date.now()*0.005)*2);
+						hands.left.position.setZ(Math.sin(Date.now()*0.005)*2);
+						feet.left.position.setZ(-(Math.sin(Date.now()*0.005)*2));
+						hands.right.position.setZ(-(Math.sin(Date.now()*0.005)*2));
+
+
+						
+
+						
+
+						if(yPos <= 0){
+
+							yPos = 0;
+							ground = true;
+						}
+						
+						
+						mesh.position.set(xPos, yPos, zSpeed);
+
+					    mesh.doubleSided = true;
+					    if ( c && c.distance <= 0 ) {
+
+							touch = true;
+							c.mesh.material.color.setHex( 0xCC9933 );
+							if (checklife == true) {
+								life--;
+								document.getElementById('life').innerHTML = "Your Life:</b> "+life ;
+								checklife = false;
+								document.getElementById('broken').play();
+								if(life<=0){
+									document.getElementById('life').innerHTML = "You are dead!";
+									return;
+								}
+							}
+							
+
+						}else{
+
+							touch = false;
+							checklife = true;
+						}
+					    if(zObs[temp] == zSpeed){
+					    	++count;
+					    	document.getElementById('message').innerHTML = "Number of obstacles has passed = "+count;
+					    	
+					    	if(ground == false  && touch == false){
+					    		
+					    		if(Math.sqrt((xObs[temp]-xPos)*(xObs[temp]-xPos)-(zObs[temp]-zSpeed)*(zObs[temp]-zSpeed)) <= 3){
+					    			score++;
+					    			document.getElementById('score').innerHTML = "<b>Your Score:</b> "+score;
+					    			document.getElementById('point').play();
+					    		}
+					    	}
+					    	temp++;
+					    }
+					
+					    
+					   
+					    
+					    
+					    cameraZ -= factor; 
+					    zSpeed -= factor;
+
+					    camera.position.set(0, 5,cameraZ);
+					    camera.lookAt(new THREE.Vector3( 0, yPos, zSpeed ));
+					   
+
+					   
+						requestAnimationFrame(animateScene);
+						
+						renderer.render(scene, camera); 
+
+
+						
+
+					} 
+
+	}
+}
+
+function remove1(){
+							var add = document.getElementsByTagName( "CANVAS" )[0];
+
+								add.width = "0";
+								add.height = "0";
+								
+							var change = document.getElementById("score");
+								change.className = "mission1";
+							
+							document.getElementById( "start" ).setAttribute( "onclick", "javascript: mission1();" );
+							var rmv = document.getElementById("mission1_msg");
+								rmv.style.display = "none";
+							var add_intro = document.getElementById("mission1_intro");
+								add_intro.style.display = "inherit";
+
+								return;
+
+}
+
+function remove2(){
+
+
+	var add = document.getElementsByTagName( "CANVAS" )[1];
+
+										add.width = "0";
+										add.height = "0";
+										
+										
+									
+	
+											
+
+								
+							var change = document.getElementById("score");
+								change.className = "mission2";
+							
+							
+							var add_intro = document.getElementById("mission1_end");
+								add_intro.style.display = "inherit";
+
+								return;
+
+}
+
+function remove3(){
+							var add = document.getElementsByTagName( "CANVAS" )[2];
+
+								add.width = "0";
+								add.height = "0";
+								
+							var change = document.getElementById("score");
+								change.className = "mission2";
+							
+							document.getElementById( "start" ).setAttribute( "onclick", "javascript: mission2();" );
+							var rmv = document.getElementById("mission2_msg");
+								rmv.style.display = "none";
+							var add_intro = document.getElementById("mission2_intro");
+								add_intro.style.display = "inherit";
+
+								return;
+
+}
+
+function remove4(){
+
+
+	var add = document.getElementsByTagName( "CANVAS" )[3];
+
+										add.width = "0";
+										add.height = "0";
+										
+										
+									
+	
+											
+
+								
+							var change = document.getElementById("score");
+								change.className = "mission2";
+							
+							
+							var add_intro = document.getElementById("mission2_end");
+								add_intro.style.display = "inherit";
+
+								return;
+
+}
+	
+
+function remove5(){
+							var add = document.getElementsByTagName( "CANVAS" )[4];
+
+								add.width = "0";
+								add.height = "0";
+								
+							var change = document.getElementById("score");
+								change.className = "mission2";
+							
+							document.getElementById( "start" ).setAttribute( "onclick", "javascript: mission3();" );
+							var rmv = document.getElementById("mission3_msg");
+								rmv.style.display = "none";
+							var add_intro = document.getElementById("mission3_intro");
+								add_intro.style.display = "inherit";
+
+								return;
+
+}
+
+function remove6(){
+
+
+	var add = document.getElementsByTagName( "CANVAS" )[5];
+
+										add.width = "0";
+										add.height = "0";
+										
+										
+									
+	
+											
+
+								
+							var change = document.getElementById("score");
+								change.className = "mission2";
+							
+							
+							var add_intro = document.getElementById("mission3_end");
+								add_intro.style.display = "inherit";
+
+								return;
+
+}
+
+
+
+
+	</script> 
+
+</body> 
+
+</html>

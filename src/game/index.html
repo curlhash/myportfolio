@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>Fountain of youth game</title>
+	
+	<style>
+	body{
+		background: url('welcome.jpg');
+		background-position: 10% 50%;
+		background-size: cover;
+	}
+
+	button{
+		top: 500px;
+		position: relative;
+		width: 140px;
+		height: 60px;
+		background: rgb(46, 140, 55);
+		border: 0px;
+		color: rgb(210, 208, 89);
+		float: right;
+		right: 523px;
+		font-size: 22px;
+	}
+	button:hover{
+		opacity: 0.9;
+		cursor: pointer;
+	}
+	a{
+		text-decoration: none;
+		color: rgb(210, 208, 89);
+	}
+	
+	</style>
+</head>
+<body>
+	<audio id="welcome" src="welcome.mp3" preload="auto"></audio>
+	<button><a href="maze.htm">Play!</a></button>
+
+</body>
+<script>document.getElementById("welcome").play()</script>
+</html>

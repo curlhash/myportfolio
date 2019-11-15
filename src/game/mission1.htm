@@ -1,0 +1,273 @@
+<html>  
+<head> 
+<title>Mission 1</title>
+</head>
+<body style='overflow: hidden; margin: 0 0 0 0;'>
+	<p id="message">Waiting for first ring to pass.</p> <!-- This line will tell the total number of rings passed. -->
+	
+	<p id="score"><b>Your Score:</b> 0</p> <!-- This line will tell the total score of player -->
+
+	
+
+	<audio id="point" src="point.mp3" preload="auto"></audio> <!-- audio which refers to the points -->
+	
+
+	<script src="Three.js"></script>
+
+	<script>
+	var handle;
+	var scene = new THREE.Scene();
+	var i = 0; //counts the total number of rings 
+	var score = 0; //Used to store the score of player.
+	var factor = 1; //Decides the speed of camera and cube.
+	var animationSpeed = 20;
+	var dist = 0; //position of ring in z direction.
+	var test = 0; //used to check whether the ring has passed or not.
+	var xSpeed = 0; //x co-ordinate of cube.
+	var ySpeed = 0; //y co-ordinate of cube.
+	var zSpeed = 200; //z co-ordinate of cube.
+	var cameraZ = 300; //z co-ordinate of camera.
+	
+	
+
+	
+	var camera; //used to create WebGL camera
+	var renderer; //used to create WebGL renderer
+	var geometry; //used to define object's geometry
+	var material; //used to define object's material
+	var Rmaterial; //used to define ring's material
+	var cube; // stores the mesh(as of now the geometry is cube)
+	var ring; // stores the ring's mesh
+	var num;
+	var xRing = new Array(50);
+	var zRing = new Array(50);
+	var dec = 200;
+	zRing[0] = 0;
+
+	var radius = 1.7;
+	var tubeRadius = 0.5;
+	var radialSegments = 2*15;
+	var tubularSegments = 8*3;
+	var arc = Math.PI * 2;
+       
+        
+	initialiseScene(); //calling a function which initialises the scene
+        setAnim();
+	animateScene(); //calling a function which will enables the animation
+
+
+
+
+
+					function initialiseScene(){
+
+						camera = new THREE.PerspectiveCamera(10, window.innerWidth/window.innerHeight, 1, 10000); 
+						renderer = new THREE.WebGLRenderer(); 
+						renderer.setSize(window.innerWidth, window.innerHeight); 
+						renderer.ShadowMapEnabled = true;
+						renderer.ShadowMapType = THREE.PCFSoftShadowMap;
+
+						document.body.appendChild(renderer.domElement);
+							var spotLight	= new THREE.SpotLight( 0xFFAA88 );
+							spotLight.target.position.set( 0, 2, 0 );
+							spotLight.shadowCameraNear	= 0.01;		
+							spotLight.castShadow		= true;
+							spotLight.shadowDarkness	= 0.5;
+							spotLight.shadowCameraVisible	= true;
+						// console.dir(spotLight)
+						// spotLight.shadowMapWidth	= 1024;
+						// spotLight.shadowMapHeight	= 1024;
+							scene.add( spotLight ); 
+						geometry = new THREE.CubeGeometry(1,1,1);
+
+						 
+						material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+					                 
+						cube = new THREE.Mesh(geometry, material);
+						cube.overdraw = true;
+						scene.add(cube);  //adding the geometry to the scene.
+						
+						
+					  var room = new THREE.CubeGeometry(100,0.5,15000);
+						var floorMat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('floor1.jpg')});
+						var floor = new THREE.Mesh(room,floorMat);
+                                                floor.position.set(0,-3,0);
+                        var wall = new THREE.CubeGeometry(0.5,500,20000);
+                        var wall_left_image = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall1.jpg')});
+                        var wall_right_image = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('wall1.jpg')});
+                        var wall_left = new THREE.Mesh(wall,wall_left_image);
+                                                wall_left.position.set(-100,0,0);
+                        var wall_right = new THREE.Mesh(wall,wall_right_image);
+                                                wall_right.position.set(100,0,0);
+                        
+                        var sky = new THREE.CubeGeometry(500, 0.5, 20000);
+                        var horizon = new THREE.CubeGeometry(1000, 1000, 0.5);
+                        var sky_mat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('sky1.jpg')});
+                        var horizon_mat = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('horizon1.jpg')});
+                        var sky_add = new THREE.Mesh(sky,sky_mat);
+                        var horizon_add = new THREE.Mesh(horizon,horizon_mat);
+                        sky_add.position.set(0,100,0); 
+                        horizon_add.position.set(0,0,-10000);
+                        
+
+						
+						scene.add(camera);
+						scene.add(floor);
+						scene.add(wall_left);
+						scene.add(wall_right);
+						scene.add(sky_add);
+                                                scene.add(horizon_add);
+						
+						light = new THREE.SpotLight(0x00ff00);
+						light.castShadow = true;
+						scene.add(light);
+                                                light.position.set(0,0,0);
+						renderer.shadowMapEnabled = true;
+						cube.castShadow = true;
+
+					  
+						var directionalLight = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						directionalLight.position.set(1,-1,1);
+						scene.add(directionalLight); //adding directional light to the scene.
+					var directionalLight2 = new THREE.DirectionalLight(0xFFAA88, 1.0);
+						directionalLight2.position.set(-1,1,0);
+						scene.add(directionalLight2);
+						camera.position.z = 0; //setting the co ordinates of camera.
+						camera.position.y = 0;
+
+						for( num = 1; num<=36 ; num++){ 
+							zRing[num] = zRing[num-1] - dec;
+							xRing[num-1] = (Math.random()*30 - 10);
+
+							Rmaterial = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('ring1.jpg')});
+
+
+							ring = new THREE.Mesh( new THREE.TorusGeometry( radius, tubeRadius, radialSegments, tubularSegments, arc ) , Rmaterial );
+			
+							ring.position.set(xRing[num-1], 0 , zRing[num-1]);
+							
+  							
+							scene.add(ring);
+							
+						}
+
+
+					    //Adding a listener for 'keydown' events. By this listener, all key events will be
+					    //passed to the function 'onDocumentKeyDown'. There's another event type 'keypress'.
+					    //It will report only the visible characters like 'a', but not the function keys
+					    //like 'cursor up'.
+
+				    	document.addEventListener("keydown", onDocumentKeyDown, false);
+                                        renderer.render(scene, camera); 
+
+
+					}
+
+ 
+	
+
+
+					function onDocumentKeyDown(event){
+						var keycode = event.which;
+						//cursor left
+						if(keycode == 37){
+							xSpeed -= 0.5;
+						}
+						//cursor right
+						else if(keycode == 39){
+							xSpeed += 0.5;
+						}
+							}
+					
+
+	//animating scene 
+
+					function animateScene(){
+
+
+						cube.rotation.x  =  Date.now() * 0.001; 
+						
+						cube.position.set(xSpeed, ySpeed, zSpeed);
+
+					    cube.doubleSided = true;
+					    
+					    
+					    camera.position.z = cameraZ;
+					    
+					    
+					    cameraZ -= factor; 
+					    zSpeed -= factor;
+						
+						
+						renderer.render(scene, camera); 
+						if(i == 5){
+							clearInterval(handle);
+							animationSpeed = 10;
+							handle = setInterval(animateScene,animationSpeed);
+						}
+						if(i == 10){
+							clearInterval(handle);
+							animationSpeed = 7;
+							handle = setInterval(animateScene,animationSpeed);
+						}
+						if(i == 25){
+							animationSpeed = 5;
+							clearInterval(handle);
+							handle = setInterval(animateScene,animationSpeed);
+						}
+						
+
+
+						
+						//checks whether z co ordinate of ring and cube is same or not.
+
+						if(zSpeed == zRing[test]){
+							
+
+							if(i==35){
+								if(score < 20){
+									document.getElementById('score').innerHTML = "<b>Game Over and Your Score is:</b> " + score;
+									factor = 0;
+									return;
+
+								}
+								else{
+									document.getElementById('score').innerHTML = "<b>Congratulations you have completed the mission and Your Score is:</b> " + score;
+									factor = 0;
+									return;
+								}
+							}
+							
+							++i;
+
+							document.getElementById('message').innerHTML = "Ring number "+i+" has passed! ";
+							
+
+						
+
+							if (Math.abs(xRing[test]-xSpeed) < 1.1 ) {
+								++score;
+								document.getElementById('score').innerHTML = "<b>Your Score:</b> "+score;
+								document.getElementById('point').play();
+							}
+
+							
+
+
+							
+							test++;
+							
+						}
+
+						//requestAnimationFrame(animateScene);
+						
+					} 
+					function setAnim(){handle = setInterval(animateScene,animationSpeed);}
+
+	
+
+	</script> 
+
+</body> 
+
+</html>

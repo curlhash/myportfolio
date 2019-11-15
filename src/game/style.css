@@ -1,0 +1,172 @@
+body{
+	overflow: hidden;
+	margin: 0;
+}
+
+#mission1{
+	margin-top: -644px;
+	background: white;
+	position: relative;
+	width: 100%; 
+}
+
+.msg11{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+
+button{
+	top: 290px;
+position: relative;
+width: 100px;
+height: 30px;
+background: rgb(71, 140, 48);
+border: 0px;
+color: rgb(210, 208, 89);
+left: 50px;
+
+}
+
+
+.msg12{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+
+
+.msg13{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+.msg21{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+.msg22{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+.msg23{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+.msg31{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+.msg32{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+.msg33{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+.msg4{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: none;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+.msg1{
+width: 650px;
+height: 350px;
+top: 150px;
+left: 360px;
+position: absolute;
+background: rgb(193, 200, 90);
+display: inherit;
+float: left;
+color: rgb(48, 52, 18);
+font-size: 23px;
+}
+ul#text{
+margin: 5px;
+top: -30px;
+position: relative;
+}
+#header{
+background: rgb(79, 129, 25);
+color: rgb(233, 255, 228);
+text-align: center;
+font-size: 15px;
+font-family: Mangal;
+}

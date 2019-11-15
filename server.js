@@ -11,6 +11,9 @@ app.get('/', function (req, res) {
 app.get('/surprise-me', function (req, res) {
 	res.sendFile(__dirname + '/dist/experiment.html');
 });
+app.get('/game/foy', function (req, res) {
+    res.sendFile(__dirname + '/dist/game/index.html')
+})
 
 app.listen(80, function () {
     console.log('App listening on port 80!');
