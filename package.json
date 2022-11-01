@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-filter": "^5.1.0",
     "gulp-uglify": "^3.0.1",
     "run-sequence": "^2.2.1"
